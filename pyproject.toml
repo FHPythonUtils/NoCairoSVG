@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nocairosvg"
-version = "2021.0.1"
+version = "2021.0.4"
 description = "Drop in replacement for cairosvg"
 authors = ["FredHappyface"]
 classifiers = [

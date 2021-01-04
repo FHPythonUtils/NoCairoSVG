@@ -2,7 +2,7 @@
 
 > Auto-generated documentation for [nocairosvg](../../nocairosvg/__init__.py) module.
 
-- [Nocairosvg_](../README.md#nocairosvg_-index) / [Modules](../README.md#nocairosvg_-modules) / nocairosvg
+- [Nocairosvg](../README.md#nocairosvg-index) / [Modules](../README.md#nocairosvg-modules) / nocairosvg
     - [colour2Tuple](#colour2tuple)
     - [convertSVG](#convertsvg)
     - [findAndReplace](#findandreplace)
@@ -19,7 +19,7 @@
 
 ## colour2Tuple
 
-[[find in source code]](../../nocairosvg/__init__.py#L412)
+[[find in source code]](../../nocairosvg/__init__.py#L419)
 
 ```python
 def colour2Tuple(colour: Optional[str]) -> Tuple[(int, int, int, int)]:
@@ -37,7 +37,7 @@ Tuple[int, int, int, int]: the converted colour
 
 ## convertSVG
 
-[[find in source code]](../../nocairosvg/__init__.py#L340)
+[[find in source code]](../../nocairosvg/__init__.py#L346)
 
 ```python
 def convertSVG(
@@ -66,7 +66,7 @@ Convert an SVG to a pillow Image
 
 ## findAndReplace
 
-[[find in source code]](../../nocairosvg/__init__.py#L377)
+[[find in source code]](../../nocairosvg/__init__.py#L384)
 
 ```python
 def findAndReplace(
@@ -93,7 +93,7 @@ Default is 3
 
 ## getSize
 
-[[find in source code]](../../nocairosvg/__init__.py#L306)
+[[find in source code]](../../nocairosvg/__init__.py#L310)
 
 ```python
 async def getSize(url: str) -> dict[(str, float)]:
@@ -449,7 +449,7 @@ to file
 
 ## takeScreenshot
 
-[[find in source code]](../../nocairosvg/__init__.py#L329)
+[[find in source code]](../../nocairosvg/__init__.py#L335)
 
 ```python
 async def takeScreenshot(
@@ -462,7 +462,7 @@ Go to a URL, with a browser with a set resolution
 
 ## write
 
-[[find in source code]](../../nocairosvg/__init__.py#L286)
+[[find in source code]](../../nocairosvg/__init__.py#L290)
 
 ```python
 def write(

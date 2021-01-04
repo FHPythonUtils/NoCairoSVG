@@ -276,7 +276,11 @@ file_obj: Optional[FileIO] = None, url: Optional[str] = None) -> str:
 	if url is not None:
 		return url
 	if file_obj is not None:
-		return str(file_obj.name)
+		fileName = getattr(file_obj, "name", None)
+		if fileName is not None:
+			return fileName
+		open(THISDIR + "/temp.svg", "w").write(file_obj.read())
+		return THISDIR + "/temp.svg"
 	if bytestring is not None:
 		open(THISDIR + "/temp.svg", "wb").write(bytestring)
 		return THISDIR + "/temp.svg"
@@ -317,10 +321,12 @@ async def getSize(url: str) -> dict[str, float]:
 	page = await browser.newPage()
 	await page.goto(url)
 	size = await page.evaluate("""() => {
+		let x = document.rootElement.getBBox().x;
+		let y = document.rootElement.getBBox().y;
 		let w = document.rootElement.getBBox().width;
 		let h = document.rootElement.getBBox().height;
 		return {
-			w, h
+			x, y, w, h
 		}
 	}""")
 	return size
@@ -356,14 +362,15 @@ size: Tuple[Optional[int], Optional[int]] = (None, None)) -> Image.Image:
 	"""
 	url = "file:///" + os.path.abspath(url)
 	# Only calculate size if the user sets a width and height
-	actualSize = {"w": 0, "h": 0}
+	actualSize = {"x": 0, "y": 0, "w": 0, "h": 0}
 	if size[0] is None or size[1] is None:
 		actualSize = asyncio.get_event_loop().run_until_complete(getSize(url))
 	asyncio.get_event_loop().run_until_complete(
-		takeScreenshot(url, (size[0] if size[0] is not None else int(actualSize["w"]),
-		size[1] if size[1] is not None else int(actualSize["h"])))
+		takeScreenshot(url, (size[0] if size[0] is not None else int(actualSize["x"] + actualSize["w"]),
+		size[1] if size[1] is not None else int(actualSize["y"] + actualSize["h"])))
 	) # yapf: disable
 	image = Image.open("temp.png")
+	image = image.crop((int(actualSize["x"]), int(actualSize["y"]), image.width, image.height))
 	if transparentColour is not None:
 		image = findAndReplace(image, transparentColour, backgroundColour)
 	try:
@@ -375,7 +382,7 @@ size: Tuple[Optional[int], Optional[int]] = (None, None)) -> Image.Image:
 
 
 def findAndReplace(image: Image.Image, find: Tuple[int, int, int, int],
-replace: Tuple[int, int, int, int], threshold: int = 3):
+replace: Tuple[int, int, int, int], threshold: int = 2):
 	"""Find and replace colour in PIL Image
 
 	Args:
