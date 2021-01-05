@@ -40,7 +40,7 @@ Drop in replacement for cairosvg
 	- [Security](#security)
 
 ## Docs
-See the [Docs](/DOCS/index.md) for more information.
+See the [Docs](/DOCS/README.md) for more information.
 
 
 
