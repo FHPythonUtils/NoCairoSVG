@@ -4,9 +4,7 @@
 
 - [Nocairosvg](../README.md#nocairosvg-index) / [Modules](../README.md#nocairosvg-modules) / nocairosvg
     - [colour2Tuple](#colour2tuple)
-    - [convertSVG](#convertsvg)
-    - [findAndReplace](#findandreplace)
-    - [getSize](#getsize)
+    - [convert](#convert)
     - [resolveFileURL](#resolvefileurl)
     - [svg2bitmap](#svg2bitmap)
     - [svg2eps](#svg2eps)
@@ -14,12 +12,11 @@
     - [svg2png](#svg2png)
     - [svg2ps](#svg2ps)
     - [svg2svg](#svg2svg)
-    - [takeScreenshot](#takescreenshot)
     - [write](#write)
 
 ## colour2Tuple
 
-[[find in source code]](../../nocairosvg/__init__.py#L419)
+[[find in source code]](../../nocairosvg/__init__.py#L343)
 
 ```python
 def colour2Tuple(colour: Optional[str]) -> Tuple[(int, int, int, int)]:
@@ -35,83 +32,33 @@ Convert a colour string to tuple
 
 Tuple[int, int, int, int]: the converted colour
 
-## convertSVG
+## convert
 
-[[find in source code]](../../nocairosvg/__init__.py#L346)
+[[find in source code]](../../nocairosvg/__init__.py#L311)
 
 ```python
-def convertSVG(
+async def convert(
     url: str,
-    transparentColour: Optional[Tuple[(int, int, int, int)]] = None,
     backgroundColour: Tuple[(int, int, int, int)] = (0, 0, 0, 0),
     size: Tuple[(Optional[int], Optional[int])] = (None, None),
-) -> Image.Image:
-```
-
-Convert an SVG to a pillow Image
-
-#### Arguments
-
-- `url` *str* - the path to the file
-   transparentColour (Optional[Tuple[int, int, int, int]], optional): The
-   colour to replace with transparent/ background. Defaults to None.
-   backgroundColour (Optional[Tuple[int, int, int, int]], optional): The
-   background colour. Defaults to (0,0,0,0).
-   size (Tuple[Optional[int], Optional[int]], optional): Sizes passed by
-   user. Defaults to (None, None).
-
-#### Returns
-
-- `Image.Image` - [description]
-
-## findAndReplace
-
-[[find in source code]](../../nocairosvg/__init__.py#L384)
-
-```python
-def findAndReplace(
-    image: Image.Image,
-    find: Tuple[(int, int, int, int)],
-    replace: Tuple[(int, int, int, int)],
-    threshold: int = 3,
 ):
 ```
 
-Find and replace colour in PIL Image
+Launch pyppeteer and use the html canvas to convert
 
 #### Arguments
 
-- `image` *PIL.Image.Image* - The Image
-- `find` *(r,g,b,a)* - A tuple containing values for rgba from 0-255 inclusive
-- `replace` *(r,g,b,a)* - A tuple containing values for rgba from 0-255 inclusive
-- `threshold` *int, optional* - Find and replace without an exact match.
-Default is 3
+- `url` *str* - [description]
+backgroundColour (Tuple[int, int, int, int], optional): [description]. Defaults to (0, 0, 0, 0).
+size (Tuple[Optional[int], Optional[int]], optional): [description]. Defaults to (None, None).
 
 #### Returns
 
-- `PIL.Image.Image` - The result
-
-## getSize
-
-[[find in source code]](../../nocairosvg/__init__.py#L310)
-
-```python
-async def getSize(url: str) -> dict[(str, float)]:
-```
-
-Get the image size
-
-#### Arguments
-
-- `url` *str* - the path to the svg
-
-#### Returns
-
-- `dict[str,` *float]* - the size
+- `[type]` - [description]
 
 ## resolveFileURL
 
-[[find in source code]](../../nocairosvg/__init__.py#L264)
+[[find in source code]](../../nocairosvg/__init__.py#L266)
 
 ```python
 def resolveFileURL(
@@ -135,7 +82,7 @@ Get a file url from a bytestring, file object, or url...
 
 ## svg2bitmap
 
-[[find in source code]](../../nocairosvg/__init__.py#L208)
+[[find in source code]](../../nocairosvg/__init__.py#L209)
 
 ```python
 def svg2bitmap(
@@ -189,7 +136,7 @@ to file
 
 ## svg2eps
 
-[[find in source code]](../../nocairosvg/__init__.py#L168)
+[[find in source code]](../../nocairosvg/__init__.py#L169)
 
 ```python
 def svg2eps(
@@ -241,7 +188,7 @@ to file
 
 ## svg2pdf
 
-[[find in source code]](../../nocairosvg/__init__.py#L91)
+[[find in source code]](../../nocairosvg/__init__.py#L92)
 
 ```python
 def svg2pdf(
@@ -293,7 +240,7 @@ to file
 
 ## svg2png
 
-[[find in source code]](../../nocairosvg/__init__.py#L52)
+[[find in source code]](../../nocairosvg/__init__.py#L53)
 
 ```python
 def svg2png(
@@ -345,7 +292,7 @@ to file
 
 ## svg2ps
 
-[[find in source code]](../../nocairosvg/__init__.py#L131)
+[[find in source code]](../../nocairosvg/__init__.py#L132)
 
 ```python
 def svg2ps(
@@ -397,7 +344,7 @@ to file
 
 ## svg2svg
 
-[[find in source code]](../../nocairosvg/__init__.py#L15)
+[[find in source code]](../../nocairosvg/__init__.py#L16)
 
 ```python
 def svg2svg(
@@ -447,22 +394,9 @@ Convert an SVG to an SVG
 - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
 to file
 
-## takeScreenshot
-
-[[find in source code]](../../nocairosvg/__init__.py#L335)
-
-```python
-async def takeScreenshot(
-    url: str,
-    resolution: Tuple[(int, int)] = (100, 100),
-):
-```
-
-Go to a URL, with a browser with a set resolution
-
 ## write
 
-[[find in source code]](../../nocairosvg/__init__.py#L290)
+[[find in source code]](../../nocairosvg/__init__.py#L292)
 
 ```python
 def write(

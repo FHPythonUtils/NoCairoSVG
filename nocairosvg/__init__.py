@@ -1,11 +1,12 @@
 from __future__ import annotations
 """NoCairoSVG - A simple SVG converter not based on Cairo! (Uses pyppeteer)
 """
-from io import FileIO
+from io import FileIO, BytesIO
 from pathlib import Path
 from typing import Optional, Tuple, Union
 import asyncio
 import os
+import base64
 from pyppeteer import launch
 from PIL import Image, ImageOps
 
@@ -242,10 +243,11 @@ int] = None, ext: str = "png", transparent: bool = True) -> Optional[bytes]:
 	    to file
 	"""
 	# Render the SVG
-	image = convertSVG(
-	resolveFileURL(bytestring, file_obj, url), (255, 255, 255, 255),
-	colour2Tuple(background_color) if background_color is not None else
-	(0, 0, 0, 0), (parent_width, parent_height))
+	url = "file:///" + os.path.abspath(url).replace("\\", "/")
+	image = asyncio.get_event_loop().run_until_complete(convert(
+		resolveFileURL(bytestring, file_obj, url),
+		colour2Tuple(background_color) if background_color is not None else
+		(0, 0, 0, 0), (parent_width, parent_height)))
 	newWidth = output_width if output_width is not None else int(image.width *
 	scale)
 	newHeight = output_height if output_height is not None else int(image.height *
@@ -306,114 +308,36 @@ dpi: int) -> Optional[bytes]:
 	image.save(THISDIR + "/temp.svg", format=ext, dpi=(dpi, dpi))
 	return open(THISDIR + "/temp.svg", "rb").read()
 
-
-async def getSize(url: str) -> dict[str, float]:
-	"""Get the image size
+async def convert(url: str, backgroundColour: Tuple[int, int, int, int] = (0, 0, 0, 0),
+size: Tuple[Optional[int], Optional[int]] = (None, None)):
+	"""Launch pyppeteer and use the html canvas to convert
 
 	Args:
-		url (str): the path to the svg
+		url (str): [description]
+		backgroundColour (Tuple[int, int, int, int], optional): [description]. Defaults to (0, 0, 0, 0).
+		size (Tuple[Optional[int], Optional[int]], optional): [description]. Defaults to (None, None).
 
 	Returns:
-		dict[str, float]: the size
+		[type]: [description]
 	"""
+
 	browser = await launch(
-	options={'args': ['--no-sandbox', '--disable-web-security']})
+	options={'args': ['--no-sandbox',
+		"--disable-web-security",
+		"--allow-file-access-from-files"]})
 	page = await browser.newPage()
-	await page.goto(url)
-	size = await page.evaluate("""() => {
-		let x = document.rootElement.getBBox().x;
-		let y = document.rootElement.getBBox().y;
-		let w = document.rootElement.getBBox().width;
-		let h = document.rootElement.getBBox().height;
-		return {
-			x, y, w, h
-		}
-	}""")
-	return size
+	await page.setViewport({"width": 4000, "height": 4000})
+	await page.goto("file:///" + THISDIR + "/convert.html")
+	width = "0" if size[0] is None else str(size[0]) + "px"
+	height = "0" if size[1] is None else str(size[1]) + "px"
+	await page.evaluate("convert('{width}', '{height}', 'rgb{backgroundColour}', '{url}')".format(width=width, height=height, backgroundColour=backgroundColour, url=url))
+	await page.waitForSelector('div')
+	pngDat = await page.evaluate("document.getElementById('div1').innerText")
+	pngDat = pngDat[22:] # data:image/png;base64,
+	im = Image.open(BytesIO(base64.b64decode(pngDat)))
+	return im
 
 
-async def takeScreenshot(url: str, resolution: Tuple[int, int] = (100, 100)):
-	''' Go to a URL, with a browser with a set resolution'''
-	browser = await launch(
-	options={'args': ['--no-sandbox', '--disable-web-security']})
-	page = await browser.newPage()
-	await page.setViewport({"width": resolution[0], "height": resolution[1]})
-	await page.goto(url)
-	await page.screenshot({'path': 'temp.png'})
-	await browser.close()
-
-
-def convertSVG(url: str, transparentColour: Optional[Tuple[int, int, int,
-int]] = None, backgroundColour: Tuple[int, int, int, int] = (0, 0, 0, 0),
-size: Tuple[Optional[int], Optional[int]] = (None, None)) -> Image.Image:
-	"""Convert an SVG to a pillow Image
-
-	Args:
-		url (str): the path to the file
-	    transparentColour (Optional[Tuple[int, int, int, int]], optional): The
-	    colour to replace with transparent/ background. Defaults to None.
-	    backgroundColour (Optional[Tuple[int, int, int, int]], optional): The
-	    background colour. Defaults to (0,0,0,0).
-	    size (Tuple[Optional[int], Optional[int]], optional): Sizes passed by
-	    user. Defaults to (None, None).
-
-	Returns:
-		Image.Image: [description]
-	"""
-	url = "file:///" + os.path.abspath(url)
-	# Only calculate size if the user sets a width and height
-	actualSize = {"x": 0, "y": 0, "w": 0, "h": 0}
-	if size[0] is None or size[1] is None:
-		actualSize = asyncio.get_event_loop().run_until_complete(getSize(url))
-	asyncio.get_event_loop().run_until_complete(
-		takeScreenshot(url, (size[0] if size[0] is not None else int(actualSize["x"] + actualSize["w"]),
-		size[1] if size[1] is not None else int(actualSize["y"] + actualSize["h"])))
-	) # yapf: disable
-	image = Image.open("temp.png")
-	image = image.crop((int(actualSize["x"]), int(actualSize["y"]), image.width, image.height))
-	if transparentColour is not None:
-		image = findAndReplace(image, transparentColour, backgroundColour)
-	try:
-		os.remove("temp.png")
-	except PermissionError:
-		print("Unable to clean up, manually " +
-		"remove temp.png from project root or ignore")
-	return image
-
-
-def findAndReplace(image: Image.Image, find: Tuple[int, int, int, int],
-replace: Tuple[int, int, int, int], threshold: int = 2):
-	"""Find and replace colour in PIL Image
-
-	Args:
-		image (PIL.Image.Image): The Image
-		find ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
-		replace ((r,g,b,a)): A tuple containing values for rgba from 0-255 inclusive
-		threshold (int, optional): Find and replace without an exact match.
-		Default is 3
-
-	Returns:
-		PIL.Image.Image: The result
-	"""
-	if find == replace:
-		return image.convert('RGBA')
-
-	def cmpTup(tupleA: Tuple[int, int, int, int], tupleB: Tuple[int, int, int,
-	int]):
-		for index, _ in enumerate(tupleA):
-			if (tupleA[index] > tupleB[index] + threshold or
-			tupleA[index] < tupleB[index] - threshold):
-				return False
-		return True
-
-	converted = image.convert('RGBA')
-	pixels = converted.load()
-	for i in range(image.size[0]):
-		for j in range(image.size[1]):
-			if cmpTup(pixels[i, j], find):
-				pixels[i, j] = replace
-
-	return converted.convert("RGBA")
 
 
 def colour2Tuple(colour: Optional[str]) -> Tuple[int, int, int, int]:

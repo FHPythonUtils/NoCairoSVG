@@ -1,0 +1,26 @@
+<html>
+	<canvas id="canvas1" width="4000" height="4000"></canvas>
+<script>
+	async function convert(width, height, backgroundColour, url) {
+		{
+			var can = document.getElementById('canvas1');
+			var ctx = can.getContext('2d');
+			var img = new Image();
+			img.onload = async function () {
+				{
+					can.width = width === "0"? img.width : width;
+					can.height = height === "0"? img.height : height;
+					ctx.fillStyle = backgroundColour;
+					ctx.fillRect(0, 0, width === "0"? img.width : width, height === "0"? img.height : height);
+					ctx.drawImage(img, 0, 0, width === "0"? img.width : width, height === "0"? img.height : height);
+					console.log(can.toDataURL("image/png"))
+					document.body.innerHTML = document.body.innerHTML + "<div id='div1'>"+can.toDataURL("image/png")+"</div>";
+					//document.roo= can.toDataURL("image/png");
+				}
+			}
+			img.src = url
+		}
+	}
+</script>
+
+</html>
