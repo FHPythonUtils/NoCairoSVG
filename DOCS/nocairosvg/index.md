@@ -16,7 +16,7 @@
 
 ## colour2Tuple
 
-[[find in source code]](../../nocairosvg/__init__.py#L343)
+[[find in source code]](../../nocairosvg/__init__.py#L342)
 
 ```python
 def colour2Tuple(colour: Optional[str]) -> Tuple[(int, int, int, int)]:
@@ -34,7 +34,7 @@ Tuple[int, int, int, int]: the converted colour
 
 ## convert
 
-[[find in source code]](../../nocairosvg/__init__.py#L311)
+[[find in source code]](../../nocairosvg/__init__.py#L312)
 
 ```python
 async def convert(
@@ -157,7 +157,7 @@ def svg2eps(
 ) -> Optional[bytes]:
 ```
 
-Convert an SVG to an SVG
+Convert an SVG to EPS
 
 #### Arguments
 
@@ -209,7 +209,7 @@ def svg2pdf(
 ) -> Optional[bytes]:
 ```
 
-Convert an SVG to an SVG
+Convert an SVG to a PDF
 
 #### Arguments
 
@@ -261,7 +261,7 @@ def svg2png(
 ) -> Optional[bytes]:
 ```
 
-Convert an SVG to an SVG
+Convert an SVG to a PNG
 
 #### Arguments
 
@@ -313,7 +313,7 @@ def svg2ps(
 ) -> Optional[bytes]:
 ```
 
-Convert an SVG to an SVG
+Convert an SVG to PS
 
 #### Arguments
 
