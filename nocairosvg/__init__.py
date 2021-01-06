@@ -335,8 +335,8 @@ int] = (0, 0, 0, 0), size: Tuple[Optional[int], Optional[int]] = (None, None)):
 	await page.waitForSelector('div')
 	pngDat = await page.evaluate("document.getElementById('div1').innerText")
 	pngDat = pngDat[22:] # data:image/png;base64,
-	im = Image.open(BytesIO(base64.b64decode(pngDat)))
-	return im
+	img = Image.open(BytesIO(base64.b64decode(pngDat)))
+	return img
 
 
 def colour2Tuple(colour: Optional[str]) -> Tuple[int, int, int, int]:
