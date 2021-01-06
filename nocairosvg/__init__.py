@@ -27,25 +27,25 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
 		dpi (int, optional): dpi. Defaults to 96.
-	    parent_width (Optional[int], optional): width of the parent element
-	    (e.g. div). Defaults to None.
+		parent_width (Optional[int], optional): width of the parent element
+		(e.g. div). Defaults to None.
 		parent_height (Optional[int], optional): height of the parent element
-	    (e.g. div). Defaults to None.
+		(e.g. div). Defaults to None.
 		scale (float, optional): scale the image by . Defaults to 1.
 		unsafe (bool, optional): NA here . Defaults to False.
-	    background_color (Optional[str], optional): Set a bg colour if not
-	    transparent. Defaults to None.
+		background_color (Optional[str], optional): Set a bg colour if not
+		transparent. Defaults to None.
 		negate_colors (bool, optional): invert the image colours. Defaults to False.
 		invert_images (bool, optional): invert the image colours. Defaults to False.
-	    write_to (Union[str, FileIO, None], optional): file path/ object to
-	    write to (Omit to return bytes). Defaults to None.
+		write_to (Union[str, FileIO, None], optional): file path/ object to
+		write to (Omit to return bytes). Defaults to None.
 		output_width (Optional[int], optional): width of output image. Defaults to None.
-	    output_height (Optional[int], optional): height of output image.
-	    Defaults to None.
+		output_height (Optional[int], optional): height of output image.
+		Defaults to None.
 
 	Returns:
-	    Optional[bytes]: Bytes of image if write_to is None. else writes image
-	    to file
+		Optional[bytes]: Bytes of image if write_to is None. else writes image
+		to file
 	"""
 	raise NotImplementedError
 
@@ -64,25 +64,25 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
 		dpi (int, optional): dpi. Defaults to 96.
-	    parent_width (Optional[int], optional): width of the parent element
-	    (e.g. div). Defaults to None.
+		parent_width (Optional[int], optional): width of the parent element
+		(e.g. div). Defaults to None.
 		parent_height (Optional[int], optional): height of the parent element
-	    (e.g. div). Defaults to None.
+		(e.g. div). Defaults to None.
 		scale (float, optional): scale the image by . Defaults to 1.
 		unsafe (bool, optional): NA here . Defaults to False.
-	    background_color (Optional[str], optional): Set a bg colour if not
-	    transparent. Defaults to None.
+		background_color (Optional[str], optional): Set a bg colour if not
+		transparent. Defaults to None.
 		negate_colors (bool, optional): invert the image colours. Defaults to False.
 		invert_images (bool, optional): invert the image colours. Defaults to False.
-	    write_to (Union[str, FileIO, None], optional): file path/ object to
-	    write to (Omit to return bytes). Defaults to None.
+		write_to (Union[str, FileIO, None], optional): file path/ object to
+		write to (Omit to return bytes). Defaults to None.
 		output_width (Optional[int], optional): width of output image. Defaults to None.
-	    output_height (Optional[int], optional): height of output image.
-	    Defaults to None.
+		output_height (Optional[int], optional): height of output image.
+		Defaults to None.
 
 	Returns:
-	    Optional[bytes]: Bytes of image if write_to is None. else writes image
-	    to file
+		Optional[bytes]: Bytes of image if write_to is None. else writes image
+		to file
 	"""
 	return svg2bitmap(bytestring, file_obj, url, dpi, parent_width, parent_height,
 	scale, background_color, negate_colors, invert_images, write_to, output_width,
@@ -103,25 +103,25 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
 		dpi (int, optional): dpi. Defaults to 96.
-	    parent_width (Optional[int], optional): width of the parent element
-	    (e.g. div). Defaults to None.
+		parent_width (Optional[int], optional): width of the parent element
+		(e.g. div). Defaults to None.
 		parent_height (Optional[int], optional): height of the parent element
-	    (e.g. div). Defaults to None.
+		(e.g. div). Defaults to None.
 		scale (float, optional): scale the image by . Defaults to 1.
 		unsafe (bool, optional): NA here . Defaults to False.
-	    background_color (Optional[str], optional): Set a bg colour if not
-	    transparent. Defaults to None.
+		background_color (Optional[str], optional): Set a bg colour if not
+		transparent. Defaults to None.
 		negate_colors (bool, optional): invert the image colours. Defaults to False.
 		invert_images (bool, optional): invert the image colours. Defaults to False.
-	    write_to (Union[str, FileIO, None], optional): file path/ object to
-	    write to (Omit to return bytes). Defaults to None.
+		write_to (Union[str, FileIO, None], optional): file path/ object to
+		write to (Omit to return bytes). Defaults to None.
 		output_width (Optional[int], optional): width of output image. Defaults to None.
-	    output_height (Optional[int], optional): height of output image.
-	    Defaults to None.
+		output_height (Optional[int], optional): height of output image.
+		Defaults to None.
 
 	Returns:
-	    Optional[bytes]: Bytes of image if write_to is None. else writes image
-	    to file
+		Optional[bytes]: Bytes of image if write_to is None. else writes image
+		to file
 	"""
 	return svg2bitmap(bytestring, file_obj, url, dpi, parent_width, parent_height,
 	scale, "white"
@@ -143,25 +143,25 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
 		dpi (int, optional): dpi. Defaults to 96.
-	    parent_width (Optional[int], optional): width of the parent element
-	    (e.g. div). Defaults to None.
+		parent_width (Optional[int], optional): width of the parent element
+		(e.g. div). Defaults to None.
 		parent_height (Optional[int], optional): height of the parent element
-	    (e.g. div). Defaults to None.
+		(e.g. div). Defaults to None.
 		scale (float, optional): scale the image by . Defaults to 1.
 		unsafe (bool, optional): NA here . Defaults to False.
-	    background_color (Optional[str], optional): Set a bg colour if not
-	    transparent. Defaults to None.
+		background_color (Optional[str], optional): Set a bg colour if not
+		transparent. Defaults to None.
 		negate_colors (bool, optional): invert the image colours. Defaults to False.
 		invert_images (bool, optional): invert the image colours. Defaults to False.
-	    write_to (Union[str, FileIO, None], optional): file path/ object to
-	    write to (Omit to return bytes). Defaults to None.
+		write_to (Union[str, FileIO, None], optional): file path/ object to
+		write to (Omit to return bytes). Defaults to None.
 		output_width (Optional[int], optional): width of output image. Defaults to None.
-	    output_height (Optional[int], optional): height of output image.
-	    Defaults to None.
+		output_height (Optional[int], optional): height of output image.
+		Defaults to None.
 
 	Returns:
-	    Optional[bytes]: Bytes of image if write_to is None. else writes image
-	    to file
+		Optional[bytes]: Bytes of image if write_to is None. else writes image
+		to file
 	"""
 	raise NotImplementedError
 
@@ -180,25 +180,25 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
 		dpi (int, optional): dpi. Defaults to 96.
-	    parent_width (Optional[int], optional): width of the parent element
-	    (e.g. div). Defaults to None.
+		parent_width (Optional[int], optional): width of the parent element
+		(e.g. div). Defaults to None.
 		parent_height (Optional[int], optional): height of the parent element
-	    (e.g. div). Defaults to None.
+		(e.g. div). Defaults to None.
 		scale (float, optional): scale the image by . Defaults to 1.
 		unsafe (bool, optional): NA here . Defaults to False.
-	    background_color (Optional[str], optional): Set a bg colour if not
-	    transparent. Defaults to None.
+		background_color (Optional[str], optional): Set a bg colour if not
+		transparent. Defaults to None.
 		negate_colors (bool, optional): invert the image colours. Defaults to False.
 		invert_images (bool, optional): invert the image colours. Defaults to False.
-	    write_to (Union[str, FileIO, None], optional): file path/ object to
-	    write to (Omit to return bytes). Defaults to None.
+		write_to (Union[str, FileIO, None], optional): file path/ object to
+		write to (Omit to return bytes). Defaults to None.
 		output_width (Optional[int], optional): width of output image. Defaults to None.
-	    output_height (Optional[int], optional): height of output image.
-	    Defaults to None.
+		output_height (Optional[int], optional): height of output image.
+		Defaults to None.
 
 	Returns:
-	    Optional[bytes]: Bytes of image if write_to is None. else writes image
-	    to file
+		Optional[bytes]: Bytes of image if write_to is None. else writes image
+		to file
 	"""
 	return svg2bitmap(bytestring, file_obj, url, dpi, parent_width, parent_height,
 	scale, "white"
@@ -221,26 +221,26 @@ int] = None, ext: str = "png", transparent: bool = True) -> Optional[bytes]:
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
 		dpi (int, optional): dpi. Defaults to 96.
-	    parent_width (Optional[int], optional): width of the parent element
-	    (e.g. div). Defaults to None.
+		parent_width (Optional[int], optional): width of the parent element
+		(e.g. div). Defaults to None.
 		parent_height (Optional[int], optional): height of the parent element
-	    (e.g. div). Defaults to None.
+		(e.g. div). Defaults to None.
 		scale (float, optional): scale the image by . Defaults to 1.
-	    background_color (Optional[str], optional): Set a bg colour if not
-	    transparent. Defaults to None.
+		background_color (Optional[str], optional): Set a bg colour if not
+		transparent. Defaults to None.
 		negate_colors (bool, optional): invert the image colours. Defaults to False.
 		invert_images (bool, optional): invert the image colours. Defaults to False.
-	    write_to (Union[str, FileIO, None], optional): file path/ object to
-	    write to (Omit to return bytes). Defaults to None.
+		write_to (Union[str, FileIO, None], optional): file path/ object to
+		write to (Omit to return bytes). Defaults to None.
 		output_width (Optional[int], optional): width of output image. Defaults to None.
-	    output_height (Optional[int], optional): height of output image.
-	    Defaults to None.
+		output_height (Optional[int], optional): height of output image.
+		Defaults to None.
 		ext (str): image type. Defaults to 'png'
 		transparent (bool): Should the image be transparent. Defaults to True
 
 	Returns:
-	    Optional[bytes]: Bytes of image if write_to is None. else writes image
-	    to file
+		Optional[bytes]: Bytes of image if write_to is None. else writes image
+		to file
 	"""
 	# Render the SVG
 	url = "file:///" + os.path.abspath(url).replace("\\", "/")
@@ -310,18 +310,20 @@ dpi: int) -> Optional[bytes]:
 
 
 async def convert(url: str, backgroundColour: Tuple[int, int, int,
-int] = (0, 0, 0, 0), size: Tuple[Optional[int], Optional[int]] = (None, None)):
+int] = (0, 0, 0, 0), size: Tuple[Optional[int],
+Optional[int]] = (None, None)) -> Image.Image:
 	"""Launch pyppeteer and use the html canvas to convert
 
 	Args:
-		url (str): [description]
-		backgroundColour (Tuple[int, int, int, int], optional): [description]. Defaults to (0, 0, 0, 0).
-		size (Tuple[Optional[int], Optional[int]], optional): [description]. Defaults to (None, None).
+		url (str): location of the image to convert
+		backgroundColour (Tuple[int, int, int, int], optional): Set the background colour.
+		Defaults to (0, 0, 0, 0).
+		size (Tuple[Optional[int], Optional[int]], optional): Size to crop the image to.
+		Defaults to (None, None).
 
 	Returns:
-		[type]: [description]
+		Image.Image: PIL Image
 	"""
-
 	browser = await launch(
 	options={'args': ['--no-sandbox', "--disable-web-security",
 	"--allow-file-access-from-files"]}) # yapf: disable

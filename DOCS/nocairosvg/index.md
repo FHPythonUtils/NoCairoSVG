@@ -16,7 +16,7 @@
 
 ## colour2Tuple
 
-[[find in source code]](../../nocairosvg/__init__.py#L342)
+[[find in source code]](../../nocairosvg/__init__.py#L344)
 
 ```python
 def colour2Tuple(colour: Optional[str]) -> Tuple[(int, int, int, int)]:
@@ -41,20 +41,22 @@ async def convert(
     url: str,
     backgroundColour: Tuple[(int, int, int, int)] = (0, 0, 0, 0),
     size: Tuple[(Optional[int], Optional[int])] = (None, None),
-):
+) -> Image.Image:
 ```
 
 Launch pyppeteer and use the html canvas to convert
 
 #### Arguments
 
-- `url` *str* - [description]
-backgroundColour (Tuple[int, int, int, int], optional): [description]. Defaults to (0, 0, 0, 0).
-size (Tuple[Optional[int], Optional[int]], optional): [description]. Defaults to (None, None).
+- `url` *str* - location of the image to convert
+backgroundColour (Tuple[int, int, int, int], optional): Set the background colour.
+Defaults to (0, 0, 0, 0).
+size (Tuple[Optional[int], Optional[int]], optional): Size to crop the image to.
+Defaults to (None, None).
 
 #### Returns
 
-- `[type]` - [description]
+- `Image.Image` - PIL Image
 
 ## resolveFileURL
 
@@ -112,20 +114,20 @@ Convert an SVG to an SVG
 - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
 - `url` *Optional[str], optional* - path to file. Defaults to None.
 - `dpi` *int, optional* - dpi. Defaults to 96.
-   - `parent_width` *Optional[int], optional* - width of the parent element
-   (e.g. div). Defaults to None.
+- `parent_width` *Optional[int], optional* - width of the parent element
+(e.g. div). Defaults to None.
 - `parent_height` *Optional[int], optional* - height of the parent element
-   (e.g. div). Defaults to None.
+(e.g. div). Defaults to None.
 - `scale` *float, optional* - scale the image by . Defaults to 1.
-   - `background_color` *Optional[str], optional* - Set a bg colour if not
-   transparent. Defaults to None.
+- `background_color` *Optional[str], optional* - Set a bg colour if not
+transparent. Defaults to None.
 - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
 - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-   write_to (Union[str, FileIO, None], optional): file path/ object to
-   write to (Omit to return bytes). Defaults to None.
+write_to (Union[str, FileIO, None], optional): file path/ object to
+write to (Omit to return bytes). Defaults to None.
 - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-   - `output_height` *Optional[int], optional* - height of output image.
-   Defaults to None.
+- `output_height` *Optional[int], optional* - height of output image.
+Defaults to None.
 - `ext` *str* - image type. Defaults to 'png'
 - `transparent` *bool* - Should the image be transparent. Defaults to True
 
@@ -165,21 +167,21 @@ Convert an SVG to EPS
 - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
 - `url` *Optional[str], optional* - path to file. Defaults to None.
 - `dpi` *int, optional* - dpi. Defaults to 96.
-   - `parent_width` *Optional[int], optional* - width of the parent element
-   (e.g. div). Defaults to None.
+- `parent_width` *Optional[int], optional* - width of the parent element
+(e.g. div). Defaults to None.
 - `parent_height` *Optional[int], optional* - height of the parent element
-   (e.g. div). Defaults to None.
+(e.g. div). Defaults to None.
 - `scale` *float, optional* - scale the image by . Defaults to 1.
 - `unsafe` *bool, optional* - NA here . Defaults to False.
-   - `background_color` *Optional[str], optional* - Set a bg colour if not
-   transparent. Defaults to None.
+- `background_color` *Optional[str], optional* - Set a bg colour if not
+transparent. Defaults to None.
 - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
 - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-   write_to (Union[str, FileIO, None], optional): file path/ object to
-   write to (Omit to return bytes). Defaults to None.
+write_to (Union[str, FileIO, None], optional): file path/ object to
+write to (Omit to return bytes). Defaults to None.
 - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-   - `output_height` *Optional[int], optional* - height of output image.
-   Defaults to None.
+- `output_height` *Optional[int], optional* - height of output image.
+Defaults to None.
 
 #### Returns
 
@@ -217,21 +219,21 @@ Convert an SVG to a PDF
 - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
 - `url` *Optional[str], optional* - path to file. Defaults to None.
 - `dpi` *int, optional* - dpi. Defaults to 96.
-   - `parent_width` *Optional[int], optional* - width of the parent element
-   (e.g. div). Defaults to None.
+- `parent_width` *Optional[int], optional* - width of the parent element
+(e.g. div). Defaults to None.
 - `parent_height` *Optional[int], optional* - height of the parent element
-   (e.g. div). Defaults to None.
+(e.g. div). Defaults to None.
 - `scale` *float, optional* - scale the image by . Defaults to 1.
 - `unsafe` *bool, optional* - NA here . Defaults to False.
-   - `background_color` *Optional[str], optional* - Set a bg colour if not
-   transparent. Defaults to None.
+- `background_color` *Optional[str], optional* - Set a bg colour if not
+transparent. Defaults to None.
 - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
 - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-   write_to (Union[str, FileIO, None], optional): file path/ object to
-   write to (Omit to return bytes). Defaults to None.
+write_to (Union[str, FileIO, None], optional): file path/ object to
+write to (Omit to return bytes). Defaults to None.
 - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-   - `output_height` *Optional[int], optional* - height of output image.
-   Defaults to None.
+- `output_height` *Optional[int], optional* - height of output image.
+Defaults to None.
 
 #### Returns
 
@@ -269,21 +271,21 @@ Convert an SVG to a PNG
 - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
 - `url` *Optional[str], optional* - path to file. Defaults to None.
 - `dpi` *int, optional* - dpi. Defaults to 96.
-   - `parent_width` *Optional[int], optional* - width of the parent element
-   (e.g. div). Defaults to None.
+- `parent_width` *Optional[int], optional* - width of the parent element
+(e.g. div). Defaults to None.
 - `parent_height` *Optional[int], optional* - height of the parent element
-   (e.g. div). Defaults to None.
+(e.g. div). Defaults to None.
 - `scale` *float, optional* - scale the image by . Defaults to 1.
 - `unsafe` *bool, optional* - NA here . Defaults to False.
-   - `background_color` *Optional[str], optional* - Set a bg colour if not
-   transparent. Defaults to None.
+- `background_color` *Optional[str], optional* - Set a bg colour if not
+transparent. Defaults to None.
 - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
 - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-   write_to (Union[str, FileIO, None], optional): file path/ object to
-   write to (Omit to return bytes). Defaults to None.
+write_to (Union[str, FileIO, None], optional): file path/ object to
+write to (Omit to return bytes). Defaults to None.
 - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-   - `output_height` *Optional[int], optional* - height of output image.
-   Defaults to None.
+- `output_height` *Optional[int], optional* - height of output image.
+Defaults to None.
 
 #### Returns
 
@@ -321,21 +323,21 @@ Convert an SVG to PS
 - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
 - `url` *Optional[str], optional* - path to file. Defaults to None.
 - `dpi` *int, optional* - dpi. Defaults to 96.
-   - `parent_width` *Optional[int], optional* - width of the parent element
-   (e.g. div). Defaults to None.
+- `parent_width` *Optional[int], optional* - width of the parent element
+(e.g. div). Defaults to None.
 - `parent_height` *Optional[int], optional* - height of the parent element
-   (e.g. div). Defaults to None.
+(e.g. div). Defaults to None.
 - `scale` *float, optional* - scale the image by . Defaults to 1.
 - `unsafe` *bool, optional* - NA here . Defaults to False.
-   - `background_color` *Optional[str], optional* - Set a bg colour if not
-   transparent. Defaults to None.
+- `background_color` *Optional[str], optional* - Set a bg colour if not
+transparent. Defaults to None.
 - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
 - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-   write_to (Union[str, FileIO, None], optional): file path/ object to
-   write to (Omit to return bytes). Defaults to None.
+write_to (Union[str, FileIO, None], optional): file path/ object to
+write to (Omit to return bytes). Defaults to None.
 - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-   - `output_height` *Optional[int], optional* - height of output image.
-   Defaults to None.
+- `output_height` *Optional[int], optional* - height of output image.
+Defaults to None.
 
 #### Returns
 
@@ -373,21 +375,21 @@ Convert an SVG to an SVG
 - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
 - `url` *Optional[str], optional* - path to file. Defaults to None.
 - `dpi` *int, optional* - dpi. Defaults to 96.
-   - `parent_width` *Optional[int], optional* - width of the parent element
-   (e.g. div). Defaults to None.
+- `parent_width` *Optional[int], optional* - width of the parent element
+(e.g. div). Defaults to None.
 - `parent_height` *Optional[int], optional* - height of the parent element
-   (e.g. div). Defaults to None.
+(e.g. div). Defaults to None.
 - `scale` *float, optional* - scale the image by . Defaults to 1.
 - `unsafe` *bool, optional* - NA here . Defaults to False.
-   - `background_color` *Optional[str], optional* - Set a bg colour if not
-   transparent. Defaults to None.
+- `background_color` *Optional[str], optional* - Set a bg colour if not
+transparent. Defaults to None.
 - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
 - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-   write_to (Union[str, FileIO, None], optional): file path/ object to
-   write to (Omit to return bytes). Defaults to None.
+write_to (Union[str, FileIO, None], optional): file path/ object to
+write to (Omit to return bytes). Defaults to None.
 - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-   - `output_height` *Optional[int], optional* - height of output image.
-   Defaults to None.
+- `output_height` *Optional[int], optional* - height of output image.
+Defaults to None.
 
 #### Returns
 
