@@ -7,6 +7,8 @@ from typing import Optional, Tuple, Union
 import asyncio
 import os
 import base64
+import platform
+import subprocess
 from pyppeteer import launch
 from PIL import Image, ImageOps
 
@@ -84,9 +86,14 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
 	"""
-	return svg2bitmap(bytestring, file_obj, url, dpi, parent_width, parent_height,
-	scale, background_color, negate_colors, invert_images, write_to, output_width,
-	output_height, "png")
+	result = convertWithInkscape(bytestring, file_obj, url, dpi, parent_width,
+	parent_height, scale, background_color, negate_colors, invert_images,
+	write_to, output_width, output_height, "png")
+	if result:
+		return result if isinstance(result, bytes) else None
+	return convertWithPyppeteer(bytestring, file_obj, url, dpi, parent_width,
+	parent_height, scale, background_color, negate_colors, invert_images,
+	write_to, output_width, output_height, "png")
 
 
 def svg2pdf(bytestring: Optional[bytes] = None,
@@ -123,8 +130,13 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
 	"""
-	return svg2bitmap(bytestring, file_obj, url, dpi, parent_width, parent_height,
-	scale, "white"
+	result = convertWithInkscape(bytestring, file_obj, url, dpi, parent_width,
+	parent_height, scale, background_color, negate_colors, invert_images,
+	write_to, output_width, output_height, "pdf")
+	if result:
+		return result if isinstance(result, bytes) else None
+	return convertWithPyppeteer(
+	bytestring, file_obj, url, dpi, parent_width, parent_height, scale, "white"
 	if background_color is None else background_color, negate_colors,
 	invert_images, write_to, output_width, output_height, "pdf", False)
 
@@ -163,6 +175,11 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
 	"""
+	result = convertWithInkscape(bytestring, file_obj, url, dpi, parent_width,
+	parent_height, scale, background_color, negate_colors, invert_images,
+	write_to, output_width, output_height, "ps")
+	if result:
+		return result if isinstance(result, bytes) else None
 	raise NotImplementedError
 
 
@@ -200,13 +217,18 @@ output_height: Optional[int] = None) -> Optional[bytes]:
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
 	"""
-	return svg2bitmap(bytestring, file_obj, url, dpi, parent_width, parent_height,
-	scale, "white"
+	result = convertWithInkscape(bytestring, file_obj, url, dpi, parent_width,
+	parent_height, scale, background_color, negate_colors, invert_images,
+	write_to, output_width, output_height, "eps")
+	if result:
+		return result if isinstance(result, bytes) else None
+	return convertWithPyppeteer(
+	bytestring, file_obj, url, dpi, parent_width, parent_height, scale, "white"
 	if background_color is None else background_color, negate_colors,
 	invert_images, write_to, output_width, output_height, "eps", False)
 
 
-def svg2bitmap(bytestring: Optional[bytes] = None,
+def convertWithPyppeteer(bytestring: Optional[bytes] = None,
 file_obj: Optional[FileIO] = None, url: Optional[str] = None, dpi: int = 96,
 parent_width: Optional[int] = None, parent_height: Optional[int] = None,
 scale: float = 1, background_color: Optional[str] = None,
@@ -245,7 +267,7 @@ int] = None, ext: str = "png", transparent: bool = True) -> Optional[bytes]:
 	# Render the SVG
 	url = "file:///" + os.path.abspath(url).replace("\\", "/")
 	image = asyncio.get_event_loop().run_until_complete(
-	convert(resolveFileURL(bytestring, file_obj, url),
+	_doConvertWithPyppeteer(resolveFileURL(bytestring, file_obj, url),
 	colour2Tuple(background_color) if background_color is not None else
 	(0, 0, 0, 0), (parent_width, parent_height))) # yapf: disable
 	newWidth = output_width if output_width is not None else int(image.width *
@@ -260,7 +282,7 @@ int] = None, ext: str = "png", transparent: bool = True) -> Optional[bytes]:
 	# If opaque
 	if not transparent:
 		image = image.convert("RGB")
-	return write(image, write_to, ext, dpi)
+	return writePILImage(image, write_to, ext, dpi)
 
 
 def resolveFileURL(bytestring: Optional[bytes] = None,
@@ -289,7 +311,7 @@ file_obj: Optional[FileIO] = None, url: Optional[str] = None) -> str:
 	return "err"
 
 
-def write(image: Image.Image, file: Union[str, FileIO, None], ext: str,
+def writePILImage(image: Image.Image, file: Union[str, FileIO, None], ext: str,
 dpi: int) -> Optional[bytes]:
 	"""Write the pil image to the filesystem
 
@@ -309,8 +331,8 @@ dpi: int) -> Optional[bytes]:
 	return open(THISDIR + "/temp.svg", "rb").read()
 
 
-async def convert(url: str, backgroundColour: Tuple[int, int, int,
-int] = (0, 0, 0, 0), size: Tuple[Optional[int],
+async def _doConvertWithPyppeteer(url: str, backgroundColour: Tuple[int, int,
+int, int] = (0, 0, 0, 0), size: Tuple[Optional[int],
 Optional[int]] = (None, None)) -> Image.Image:
 	"""Launch pyppeteer and use the html canvas to convert
 
@@ -339,6 +361,84 @@ Optional[int]] = (None, None)) -> Image.Image:
 	pngDat = pngDat[22:] # data:image/png;base64,
 	img = Image.open(BytesIO(base64.b64decode(pngDat)))
 	return img
+
+
+def _doSysExec(command: str) -> tuple[int, str]:
+	"""execute a command and check for errors
+	Args:
+		command (str): commands as a string
+	Raises:
+		RuntimeWarning: throw a warning should there be a non exit code
+	"""
+	with subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
+	stderr=subprocess.STDOUT, encoding="utf-8", errors="ignore") as process:
+		out = process.communicate()[0]
+		exitCode = process.returncode
+	return exitCode, out
+
+
+def convertWithInkscape(bytestring: Optional[bytes] = None,
+file_obj: Optional[FileIO] = None, url: Optional[str] = None, dpi: int = 96,
+parent_width: Optional[int] = None, parent_height: Optional[int] = None,
+scale: float = 1, background_color: Optional[str] = None,
+negate_colors: bool = False, invert_images: bool = False, write_to: Union[str,
+FileIO, None] = None, output_width: Optional[int] = None,
+output_height: Optional[int] = None, ext: str = "png") -> Union[bool, bytes]:
+	"""Convert an SVG to an SVG
+
+	Args:
+		bytestring (Optional[bytes], optional): bytes containing svg data. Defaults to None.
+		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
+		url (Optional[str], optional): path to file. Defaults to None.
+		dpi (int, optional): dpi. Defaults to 96.
+		parent_width (Optional[int], optional): width of the parent element
+		(e.g. div). Defaults to None.
+		parent_height (Optional[int], optional): height of the parent element
+		(e.g. div). Defaults to None.
+		scale (float, optional): scale the image by . Defaults to 1.
+		background_color (Optional[str], optional): Set a bg colour if not
+		transparent. Defaults to None.
+		negate_colors (bool, optional): invert the image colours. Defaults to False.
+		invert_images (bool, optional): invert the image colours. Defaults to False.
+		write_to (Union[str, FileIO, None], optional): file path/ object to
+		write to (Omit to return bytes). Defaults to None.
+		output_width (Optional[int], optional): width of output image. Defaults to None.
+		output_height (Optional[int], optional): height of output image.
+		Defaults to None.
+		ext (str): image type. Defaults to 'png'
+	"""
+	# Doesn't look like inkscape will do this from the command line
+	if negate_colors or invert_images:
+		return False
+	inkscape = "inkscape" if platform.system(
+	) != "Windows" else "C:/'Program Files'/Inkscape/bin/inkscape.com"
+
+	exitCode, _ = _doSysExec((inkscape + " -V") if platform.system() != "Windows" else f"powershell -command \"{inkscape} -V\"")
+	if exitCode != 0:
+		return False
+
+	# File to write to
+	url = resolveFileURL(bytestring, file_obj, url)
+	outFile = THISDIR + "/temp." + ext
+	if write_to is not None and isinstance(write_to, str):
+		outFile = resolveFileURL(None, None, write_to)
+	elif isinstance(write_to, FileIO):
+		outFile = resolveFileURL(None, write_to)
+	area = ""
+	if parent_width is not None and parent_height is not None:
+		area = " -a=0:0:" + str(parent_width) + ":" + str(parent_height)
+	background = " --export-background-opacity=0.0" if background_color is None or background_color in ["none", "transparent"] else (" --export-background="+ background_color)
+	width = "" if output_width is None else (" -w=" + str(output_width))
+	height = "" if output_height is None else (" -h=" + str(output_height))
+	command = "".join([
+	inkscape, " ", url," --export-filename=", outFile, area, " --export-dpi=",
+	str(int(dpi / scale)), width, height, background])
+	exitCode, _ = _doSysExec(command if platform.system() != "Windows" else f"powershell -command \"{command}\"")
+
+	# Mirror cairosvg behaviour...
+	if write_to is None:
+		return open(THISDIR + "/temp." + ext, "rb").read()
+	return exitCode == 0
 
 
 def colour2Tuple(colour: Optional[str]) -> Tuple[int, int, int, int]:

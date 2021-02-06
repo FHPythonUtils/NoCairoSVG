@@ -1,13 +1,18 @@
-%!PS-Adobe-3.0 EPSF-3.0
+%!PS-Adobe-3.0
 %%Creator: cairo 1.17.4 (https://cairographics.org)
-%%CreationDate: Mon Jan 25 02:41:26 2021
+%%CreationDate: Mon Jan 25 02:41:30 2021
 %%Pages: 1
 %%DocumentData: Clean7Bit
 %%LanguageLevel: 3
+%%DocumentMedia: 271x271mm 768 768 0 () ()
 %%BoundingBox: 26 28 742 767
 %%EndComments
 %%BeginProlog
-50 dict begin
+/languagelevel where
+{ pop languagelevel } { 1 } ifelse
+3 lt { /Helvetica findfont 12 scalefont setfont 50 500 moveto
+  (This print job requires a PostScript Language Level 3 printer.) show
+  showpage quit } if
 /q { gsave } bind def
 /Q { grestore } bind def
 /cm { 6 array astore concat } bind def
@@ -62,12 +67,45 @@
 /cairo_flush_ascii85_file { cairo_ascii85_file status { cairo_ascii85_file flushfile } if } def
 /cairo_image { image cairo_flush_ascii85_file } def
 /cairo_imagemask { imagemask cairo_flush_ascii85_file } def
+/cairo_set_page_size {
+  % Change paper size, but only if different from previous paper size otherwise
+  % duplex fails. PLRM specifies a tolerance of 5 pts when matching paper size
+  % so we use the same when checking if the size changes.
+  /setpagedevice where {
+    pop currentpagedevice
+    /PageSize known {
+      2 copy
+      currentpagedevice /PageSize get aload pop
+      exch 4 1 roll
+      sub abs 5 gt
+      3 1 roll
+      sub abs 5 gt
+      or
+    } {
+      true
+    } ifelse
+    {
+      2 array astore
+      2 dict begin
+        /PageSize exch def
+        /ImagingBBox null def
+      currentdict end
+      setpagedevice
+    } {
+      pop pop
+    } ifelse
+  } {
+    pop
+  } ifelse
+} def
 %%EndProlog
 %%BeginSetup
 %%EndSetup
 %%Page: 1 1
 %%BeginPageSetup
+%%PageMedia: 271x271mm
 %%PageBoundingBox: 26 28 742 767
+768 768 cairo_set_page_size
 %%EndPageSetup
 q 26 28 716 739 rectclip
 1 0 0 -1 0 768 cm q
@@ -14640,5 +14678,4 @@ Q
 Q Q
 showpage
 %%Trailer
-end
 %%EOF
