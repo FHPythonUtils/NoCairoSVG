@@ -2,10 +2,12 @@
 
 > Auto-generated documentation for [nocairosvg](../../nocairosvg/__init__.py) module.
 
+NoCairoSVG - A simple SVG converter not based on Cairo! (Uses pyppeteer)
+
 - [Nocairosvg](../README.md#nocairosvg-index) / [Modules](../README.md#nocairosvg-modules) / nocairosvg
-    - [colour2Tuple](#colour2tuple)
+    - [colour2tuple](#colour2tuple)
     - [convert](#convert)
-    - [resolveFileURL](#resolvefileurl)
+    - [resolve_file_url](#resolve_file_url)
     - [svg2bitmap](#svg2bitmap)
     - [svg2eps](#svg2eps)
     - [svg2pdf](#svg2pdf)
@@ -14,12 +16,12 @@
     - [svg2svg](#svg2svg)
     - [write](#write)
 
-## colour2Tuple
+## colour2tuple
 
-[[find in source code]](../../nocairosvg/__init__.py#L344)
+[[find in source code]](../../nocairosvg/__init__.py#L447)
 
 ```python
-def colour2Tuple(colour: Optional[str]) -> Tuple[(int, int, int, int)]:
+def colour2tuple(colour: str | None) -> tuple[(int, int, int, int)]:
 ```
 
 Convert a colour string to tuple
@@ -34,13 +36,13 @@ Tuple[int, int, int, int]: the converted colour
 
 ## convert
 
-[[find in source code]](../../nocairosvg/__init__.py#L312)
+[[find in source code]](../../nocairosvg/__init__.py#L412)
 
 ```python
 async def convert(
     url: str,
-    backgroundColour: Tuple[(int, int, int, int)] = (0, 0, 0, 0),
-    size: Tuple[(Optional[int], Optional[int])] = (None, None),
+    background_colour: tuple[(int, int, int, int)] = (0, 0, 0, 0),
+    size: tuple[(int | None, int | None)] = (None, None),
 ) -> Image.Image:
 ```
 
@@ -49,7 +51,7 @@ Launch pyppeteer and use the html canvas to convert
 #### Arguments
 
 - `url` *str* - location of the image to convert
-backgroundColour (Tuple[int, int, int, int], optional): Set the background colour.
+background_colour (Tuple[int, int, int, int], optional): Set the background colour.
 Defaults to (0, 0, 0, 0).
 size (Tuple[Optional[int], Optional[int]], optional): Size to crop the image to.
 Defaults to (None, None).
@@ -58,15 +60,15 @@ Defaults to (None, None).
 
 - `Image.Image` - PIL Image
 
-## resolveFileURL
+## resolve_file_url
 
-[[find in source code]](../../nocairosvg/__init__.py#L266)
+[[find in source code]](../../nocairosvg/__init__.py#L365)
 
 ```python
-def resolveFileURL(
-    bytestring: Optional[bytes] = None,
-    file_obj: Optional[FileIO] = None,
-    url: Optional[str] = None,
+def resolve_file_url(
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
 ) -> str:
 ```
 
@@ -84,26 +86,26 @@ Get a file url from a bytestring, file object, or url...
 
 ## svg2bitmap
 
-[[find in source code]](../../nocairosvg/__init__.py#L209)
+[[find in source code]](../../nocairosvg/__init__.py#L298)
 
 ```python
 def svg2bitmap(
-    bytestring: Optional[bytes] = None,
-    file_obj: Optional[FileIO] = None,
-    url: Optional[str] = None,
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
     dpi: int = 96,
-    parent_width: Optional[int] = None,
-    parent_height: Optional[int] = None,
+    parent_width: int | None = None,
+    parent_height: int | None = None,
     scale: float = 1,
-    background_color: Optional[str] = None,
+    background_color: str | None = None,
     negate_colors: bool = False,
     invert_images: bool = False,
-    write_to: Union[(str, FileIO, None)] = None,
-    output_width: Optional[int] = None,
-    output_height: Optional[int] = None,
+    write_to: str | FileIO | None = None,
+    output_width: int | None = None,
+    output_height: int | None = None,
     ext: str = 'png',
     transparent: bool = True,
-) -> Optional[bytes]:
+) -> bytes | None:
 ```
 
 Convert an SVG to an SVG
@@ -138,25 +140,25 @@ to file
 
 ## svg2eps
 
-[[find in source code]](../../nocairosvg/__init__.py#L169)
+[[find in source code]](../../nocairosvg/__init__.py#L235)
 
 ```python
 def svg2eps(
-    bytestring: Optional[bytes] = None,
-    file_obj: Optional[FileIO] = None,
-    url: Optional[str] = None,
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
     dpi: int = 96,
-    parent_width: Optional[int] = None,
-    parent_height: Optional[int] = None,
+    parent_width: int | None = None,
+    parent_height: int | None = None,
     scale: float = 1,
     unsafe: bool = False,
-    background_color: Optional[str] = None,
+    background_color: str | None = None,
     negate_colors: bool = False,
     invert_images: bool = False,
-    write_to: Union[(str, FileIO, None)] = None,
-    output_width: Optional[int] = None,
-    output_height: Optional[int] = None,
-) -> Optional[bytes]:
+    write_to: str | FileIO | None = None,
+    output_width: int | None = None,
+    output_height: int | None = None,
+) -> bytes | None:
 ```
 
 Convert an SVG to EPS
@@ -190,25 +192,25 @@ to file
 
 ## svg2pdf
 
-[[find in source code]](../../nocairosvg/__init__.py#L92)
+[[find in source code]](../../nocairosvg/__init__.py#L126)
 
 ```python
 def svg2pdf(
-    bytestring: Optional[bytes] = None,
-    file_obj: Optional[FileIO] = None,
-    url: Optional[str] = None,
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
     dpi: int = 96,
-    parent_width: Optional[int] = None,
-    parent_height: Optional[int] = None,
+    parent_width: int | None = None,
+    parent_height: int | None = None,
     scale: float = 1,
     unsafe: bool = False,
-    background_color: Optional[str] = None,
+    background_color: str | None = None,
     negate_colors: bool = False,
     invert_images: bool = False,
-    write_to: Union[(str, FileIO, None)] = None,
-    output_width: Optional[int] = None,
-    output_height: Optional[int] = None,
-) -> Optional[bytes]:
+    write_to: str | FileIO | None = None,
+    output_width: int | None = None,
+    output_height: int | None = None,
+) -> bytes | None:
 ```
 
 Convert an SVG to a PDF
@@ -242,25 +244,25 @@ to file
 
 ## svg2png
 
-[[find in source code]](../../nocairosvg/__init__.py#L53)
+[[find in source code]](../../nocairosvg/__init__.py#L64)
 
 ```python
 def svg2png(
-    bytestring: Optional[bytes] = None,
-    file_obj: Optional[FileIO] = None,
-    url: Optional[str] = None,
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
     dpi: int = 96,
-    parent_width: Optional[int] = None,
-    parent_height: Optional[int] = None,
+    parent_width: int | None = None,
+    parent_height: int | None = None,
     scale: float = 1,
     unsafe: bool = False,
-    background_color: Optional[str] = None,
+    background_color: str | None = None,
     negate_colors: bool = False,
     invert_images: bool = False,
-    write_to: Union[(str, FileIO, None)] = None,
-    output_width: Optional[int] = None,
-    output_height: Optional[int] = None,
-) -> Optional[bytes]:
+    write_to: str | FileIO | None = None,
+    output_width: int | None = None,
+    output_height: int | None = None,
+) -> bytes | None:
 ```
 
 Convert an SVG to a PNG
@@ -294,25 +296,25 @@ to file
 
 ## svg2ps
 
-[[find in source code]](../../nocairosvg/__init__.py#L132)
+[[find in source code]](../../nocairosvg/__init__.py#L189)
 
 ```python
 def svg2ps(
-    bytestring: Optional[bytes] = None,
-    file_obj: Optional[FileIO] = None,
-    url: Optional[str] = None,
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
     dpi: int = 96,
-    parent_width: Optional[int] = None,
-    parent_height: Optional[int] = None,
+    parent_width: int | None = None,
+    parent_height: int | None = None,
     scale: float = 1,
     unsafe: bool = False,
-    background_color: Optional[str] = None,
+    background_color: str | None = None,
     negate_colors: bool = False,
     invert_images: bool = False,
-    write_to: Union[(str, FileIO, None)] = None,
-    output_width: Optional[int] = None,
-    output_height: Optional[int] = None,
-) -> Optional[bytes]:
+    write_to: str | FileIO | None = None,
+    output_width: int | None = None,
+    output_height: int | None = None,
+) -> bytes | None:
 ```
 
 Convert an SVG to PS
@@ -346,25 +348,25 @@ to file
 
 ## svg2svg
 
-[[find in source code]](../../nocairosvg/__init__.py#L16)
+[[find in source code]](../../nocairosvg/__init__.py#L18)
 
 ```python
 def svg2svg(
-    bytestring: Optional[bytes] = None,
-    file_obj: Optional[FileIO] = None,
-    url: Optional[str] = None,
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
     dpi: int = 96,
-    parent_width: Optional[int] = None,
-    parent_height: Optional[int] = None,
+    parent_width: int | None = None,
+    parent_height: int | None = None,
     scale: float = 1,
     unsafe: bool = False,
-    background_color: Optional[str] = None,
+    background_color: str | None = None,
     negate_colors: bool = False,
     invert_images: bool = False,
-    write_to: Union[(str, FileIO, None)] = None,
-    output_width: Optional[int] = None,
-    output_height: Optional[int] = None,
-) -> Optional[bytes]:
+    write_to: str | FileIO | None = None,
+    output_width: int | None = None,
+    output_height: int | None = None,
+) -> bytes | None:
 ```
 
 Convert an SVG to an SVG
@@ -398,15 +400,15 @@ to file
 
 ## write
 
-[[find in source code]](../../nocairosvg/__init__.py#L292)
+[[find in source code]](../../nocairosvg/__init__.py#L393)
 
 ```python
 def write(
     image: Image.Image,
-    file: Union[(str, FileIO, None)],
+    file: str | FileIO | None,
     ext: str,
     dpi: int,
-) -> Optional[bytes]:
+) -> bytes | None:
 ```
 
 Write the pil image to the filesystem

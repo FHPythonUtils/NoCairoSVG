@@ -1,3 +1,5 @@
+"""Test script to convert svg to png, eps and pdf"""
+
 import nocairosvg
 
 nocairosvg.svg2png(url="firefox.svg", write_to="firefox.png")
