@@ -341,7 +341,7 @@ def svg2bitmap(
 		to file
 	"""
 	# Render the SVG
-	url = "file:///" + os.path.abspath(url).replace("\\", "/")
+	url = "file:///" + os.path.abspath(url).replace("\\", "/") if url is not None else None
 	image = asyncio.get_event_loop().run_until_complete(
 		convert(
 			resolve_file_url(bytestring, file_obj, url),

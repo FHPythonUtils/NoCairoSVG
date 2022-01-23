@@ -1,6 +1,10 @@
 """Test script to convert svg to png, eps and pdf"""
+import sys
+from pathlib import Path
 
-from __future__ import annotations
+THISDIR = str(Path(__file__).resolve().parent)
+sys.path.insert(0, str(Path(THISDIR).parent))
+
 
 import nocairosvg
 

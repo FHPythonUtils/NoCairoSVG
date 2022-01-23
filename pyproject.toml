@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nocairosvg"
-version = "2021.1.1"
+version = "2022"
 license = "mit"
 description = "Drop in replacement for cairosvg"
 authors = ["FredHappyface"]
@@ -22,8 +22,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-Pillow = "<10,>=8.1.0"
-pyppeteer = "<2,>=0.2.3"
+Pillow = "<10,>=9.0.0"
+pyppeteer = "<2,>=1.0.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+imgcompare = "^2.0.1"
 
 [tool.pylint.basic]
 argument-naming-style = "snake_case"
