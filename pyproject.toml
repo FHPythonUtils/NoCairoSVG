@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nocairosvg"
-version = "2022"
+version = "2022.0.1"
 license = "mit"
 description = "Drop in replacement for cairosvg"
 authors = ["FredHappyface"]

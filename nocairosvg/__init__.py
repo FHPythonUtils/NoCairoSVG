@@ -175,7 +175,7 @@ def svg2pdf(
 		parent_width,
 		parent_height,
 		scale,
-		"white" if background_color is None else background_color,
+		background_color or "white",
 		negate_colors,
 		invert_images,
 		write_to,
@@ -284,7 +284,7 @@ def svg2eps(
 		parent_width,
 		parent_height,
 		scale,
-		"white" if background_color is None else background_color,
+		background_color or "white",
 		negate_colors,
 		invert_images,
 		write_to,
@@ -349,8 +349,8 @@ def svg2bitmap(
 			(parent_width, parent_height),
 		)
 	)
-	new_width = output_width if output_width is not None else int(image.width * scale)
-	new_height = output_height if output_height is not None else int(image.height * scale)
+	new_width = output_width or int(image.width * scale)
+	new_height = output_height or int(image.height * scale)
 	# Apply scale/ set output width and height
 	image.resize((new_width, new_height), Image.ANTIALIAS)
 	# Invert images
@@ -405,8 +405,8 @@ def write(image: Image.Image, file: str | FileIO | None, ext: str, dpi: int) -> 
 	if file is not None:
 		image.save(file, format=ext, dpi=(dpi, dpi))
 		return None
-	image.save(THISDIR + "/temp.svg", format=ext, dpi=(dpi, dpi))
-	return open(THISDIR + "/temp.svg", "rb").read()
+	image.save(f"{THISDIR}/temp.svg", format=ext, dpi=(dpi, dpi))
+	return open(f"{THISDIR}/temp.svg", "rb").read()
 
 
 async def convert(
@@ -433,14 +433,15 @@ async def convert(
 	)
 	page = await browser.newPage()
 	await page.setViewport({"width": 4000, "height": 4000})
-	await page.goto("file:///" + THISDIR + "/convert.html")
-	width = "0" if size[0] is None else str(size[0]) + "px"
-	height = "0" if size[1] is None else str(size[1]) + "px"
+	await page.goto(f"file:///{THISDIR}/convert.html")
+	width = "0" if size[0] is None else f"{size[0]}px"
+	height = "0" if size[1] is None else f"{size[1]}px"
 	await page.evaluate(f"convert('{width}', '{height}', 'rgb{background_colour}', '{url}')")
 	await page.waitForSelector("div")
 	png_dat = await page.evaluate("document.getElementById('div1').innerText")
 	png_dat = png_dat[22:]  # data:image/png;base64,
 	img = Image.open(BytesIO(base64.b64decode(png_dat)))
+	await browser.close()
 	return img
 
 

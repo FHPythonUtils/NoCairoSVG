@@ -18,7 +18,7 @@ NoCairoSVG - A simple SVG converter not based on Cairo! (Uses pyppeteer)
 
 ## colour2tuple
 
-[[find in source code]](../../nocairosvg/__init__.py#L447)
+[[find in source code]](../../nocairosvg/__init__.py#L448)
 
 ```python
 def colour2tuple(colour: str | None) -> tuple[(int, int, int, int)]:
