@@ -1,10 +1,10 @@
-# nocairosvg
+# Nocairosvg
 
-> Auto-generated documentation for [nocairosvg](../../nocairosvg/__init__.py) module.
+> Auto-generated documentation for [nocairosvg](../../../nocairosvg/__init__.py) module.
 
 NoCairoSVG - A simple SVG converter not based on Cairo! (Uses pyppeteer)
 
-- [Nocairosvg](../README.md#nocairosvg-index) / [Modules](../README.md#nocairosvg-modules) / nocairosvg
+- [Nocairosvg](../README.md#nocairosvg-index) / [Modules](../MODULES.md#nocairosvg-modules) / Nocairosvg
     - [colour2tuple](#colour2tuple)
     - [convert](#convert)
     - [resolve_file_url](#resolve_file_url)
@@ -18,10 +18,10 @@ NoCairoSVG - A simple SVG converter not based on Cairo! (Uses pyppeteer)
 
 ## colour2tuple
 
-[[find in source code]](../../nocairosvg/__init__.py#L448)
+[[find in source code]](../../../nocairosvg/__init__.py#L448)
 
 ```python
-def colour2tuple(colour: str | None) -> tuple[(int, int, int, int)]:
+def colour2tuple(colour: str | None) -> tuple[int, int, int, int]:
 ```
 
 Convert a colour string to tuple
@@ -36,13 +36,13 @@ Tuple[int, int, int, int]: the converted colour
 
 ## convert
 
-[[find in source code]](../../nocairosvg/__init__.py#L412)
+[[find in source code]](../../../nocairosvg/__init__.py#L412)
 
 ```python
 async def convert(
     url: str,
-    background_colour: tuple[(int, int, int, int)] = (0, 0, 0, 0),
-    size: tuple[(int | None, int | None)] = (None, None),
+    background_colour: tuple[int, int, int, int] = (0, 0, 0, 0),
+    size: tuple[int | None, int | None] = (None, None),
 ) -> Image.Image:
 ```
 
@@ -62,7 +62,7 @@ Defaults to (None, None).
 
 ## resolve_file_url
 
-[[find in source code]](../../nocairosvg/__init__.py#L365)
+[[find in source code]](../../../nocairosvg/__init__.py#L365)
 
 ```python
 def resolve_file_url(
@@ -86,7 +86,7 @@ Get a file url from a bytestring, file object, or url...
 
 ## svg2bitmap
 
-[[find in source code]](../../nocairosvg/__init__.py#L298)
+[[find in source code]](../../../nocairosvg/__init__.py#L298)
 
 ```python
 def svg2bitmap(
@@ -140,7 +140,7 @@ to file
 
 ## svg2eps
 
-[[find in source code]](../../nocairosvg/__init__.py#L235)
+[[find in source code]](../../../nocairosvg/__init__.py#L235)
 
 ```python
 def svg2eps(
@@ -192,7 +192,7 @@ to file
 
 ## svg2pdf
 
-[[find in source code]](../../nocairosvg/__init__.py#L126)
+[[find in source code]](../../../nocairosvg/__init__.py#L126)
 
 ```python
 def svg2pdf(
@@ -244,7 +244,7 @@ to file
 
 ## svg2png
 
-[[find in source code]](../../nocairosvg/__init__.py#L64)
+[[find in source code]](../../../nocairosvg/__init__.py#L64)
 
 ```python
 def svg2png(
@@ -296,7 +296,7 @@ to file
 
 ## svg2ps
 
-[[find in source code]](../../nocairosvg/__init__.py#L189)
+[[find in source code]](../../../nocairosvg/__init__.py#L189)
 
 ```python
 def svg2ps(
@@ -348,7 +348,7 @@ to file
 
 ## svg2svg
 
-[[find in source code]](../../nocairosvg/__init__.py#L18)
+[[find in source code]](../../../nocairosvg/__init__.py#L18)
 
 ```python
 def svg2svg(
@@ -400,7 +400,7 @@ to file
 
 ## write
 
-[[find in source code]](../../nocairosvg/__init__.py#L393)
+[[find in source code]](../../../nocairosvg/__init__.py#L393)
 
 ```python
 def write(
