@@ -352,7 +352,7 @@ def svg2bitmap(
 	new_width = output_width or int(image.width * scale)
 	new_height = output_height or int(image.height * scale)
 	# Apply scale/ set output width and height
-	image.resize((new_width, new_height), Image.ANTIALIAS)
+	image.resize((new_width, new_height), Image.Resampling.LANCZOS)
 	# Invert images
 	if invert_images or negate_colors:
 		image = ImageOps.invert(image)
