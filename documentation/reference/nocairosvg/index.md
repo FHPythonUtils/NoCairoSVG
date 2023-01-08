@@ -1,28 +1,25 @@
 # Nocairosvg
 
+[Nocairosvg Index](../README.md#nocairosvg-index) /
+Nocairosvg
+
 > Auto-generated documentation for [nocairosvg](../../../nocairosvg/__init__.py) module.
 
-NoCairoSVG - A simple SVG converter not based on Cairo! (Uses pyppeteer)
-
-- [Nocairosvg](../README.md#nocairosvg-index) / [Modules](../MODULES.md#nocairosvg-modules) / Nocairosvg
-    - [colour2tuple](#colour2tuple)
-    - [convert](#convert)
-    - [resolve_file_url](#resolve_file_url)
-    - [svg2bitmap](#svg2bitmap)
-    - [svg2eps](#svg2eps)
-    - [svg2pdf](#svg2pdf)
-    - [svg2png](#svg2png)
-    - [svg2ps](#svg2ps)
-    - [svg2svg](#svg2svg)
-    - [write](#write)
+- [Nocairosvg](#nocairosvg)
+  - [colour2tuple](#colour2tuple)
+  - [convert](#convert)
+  - [resolve_file_url](#resolve_file_url)
+  - [svg2bitmap](#svg2bitmap)
+  - [svg2eps](#svg2eps)
+  - [svg2pdf](#svg2pdf)
+  - [svg2png](#svg2png)
+  - [svg2ps](#svg2ps)
+  - [svg2svg](#svg2svg)
+  - [write](#write)
 
 ## colour2tuple
 
-[[find in source code]](../../../nocairosvg/__init__.py#L448)
-
-```python
-def colour2tuple(colour: str | None) -> tuple[int, int, int, int]:
-```
+[Show source in __init__.py:447](../../../nocairosvg/__init__.py#L447)
 
 Convert a colour string to tuple
 
@@ -34,19 +31,20 @@ Convert a colour string to tuple
 
 Tuple[int, int, int, int]: the converted colour
 
-## convert
-
-[[find in source code]](../../../nocairosvg/__init__.py#L412)
+#### Signature
 
 ```python
-async def convert(
-    url: str,
-    background_colour: tuple[int, int, int, int] = (0, 0, 0, 0),
-    size: tuple[int | None, int | None] = (None, None),
-) -> Image.Image:
+def colour2tuple(colour: str | None) -> tuple[int, int, int, int]:
+    ...
 ```
 
-Launch pyppeteer and use the html canvas to convert
+
+
+## convert
+
+[Show source in __init__.py:411](../../../nocairosvg/__init__.py#L411)
+
+Launch playwright and use the html canvas to convert
 
 #### Arguments
 
@@ -60,17 +58,22 @@ Defaults to (None, None).
 
 - `Image.Image` - PIL Image
 
-## resolve_file_url
-
-[[find in source code]](../../../nocairosvg/__init__.py#L365)
+#### Signature
 
 ```python
-def resolve_file_url(
-    bytestring: bytes | None = None,
-    file_obj: FileIO | None = None,
-    url: str | None = None,
-) -> str:
+def convert(
+    url: str,
+    background_colour: tuple[int, int, int, int] = (0, 0, 0, 0),
+    size: tuple[int | None, int | None] = (None, None),
+) -> Image.Image:
+    ...
 ```
+
+
+
+## resolve_file_url
+
+[Show source in __init__.py:364](../../../nocairosvg/__init__.py#L364)
 
 Get a file url from a bytestring, file object, or url...
 
@@ -84,29 +87,22 @@ Get a file url from a bytestring, file object, or url...
 
 - `str` - path
 
-## svg2bitmap
-
-[[find in source code]](../../../nocairosvg/__init__.py#L298)
+#### Signature
 
 ```python
-def svg2bitmap(
+def resolve_file_url(
     bytestring: bytes | None = None,
     file_obj: FileIO | None = None,
     url: str | None = None,
-    dpi: int = 96,
-    parent_width: int | None = None,
-    parent_height: int | None = None,
-    scale: float = 1,
-    background_color: str | None = None,
-    negate_colors: bool = False,
-    invert_images: bool = False,
-    write_to: str | FileIO | None = None,
-    output_width: int | None = None,
-    output_height: int | None = None,
-    ext: str = 'png',
-    transparent: bool = True,
-) -> bytes | None:
+) -> str:
+    ...
 ```
+
+
+
+## svg2bitmap
+
+[Show source in __init__.py:298](../../../nocairosvg/__init__.py#L298)
 
 Convert an SVG to an SVG
 
@@ -138,12 +134,10 @@ Defaults to None.
 - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
 to file
 
-## svg2eps
-
-[[find in source code]](../../../nocairosvg/__init__.py#L235)
+#### Signature
 
 ```python
-def svg2eps(
+def svg2bitmap(
     bytestring: bytes | None = None,
     file_obj: FileIO | None = None,
     url: str | None = None,
@@ -151,15 +145,23 @@ def svg2eps(
     parent_width: int | None = None,
     parent_height: int | None = None,
     scale: float = 1,
-    unsafe: bool = False,
     background_color: str | None = None,
     negate_colors: bool = False,
     invert_images: bool = False,
     write_to: str | FileIO | None = None,
     output_width: int | None = None,
     output_height: int | None = None,
+    ext: str = "png",
+    transparent: bool = True,
 ) -> bytes | None:
+    ...
 ```
+
+
+
+## svg2eps
+
+[Show source in __init__.py:235](../../../nocairosvg/__init__.py#L235)
 
 Convert an SVG to EPS
 
@@ -190,12 +192,10 @@ Defaults to None.
 - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
 to file
 
-## svg2pdf
-
-[[find in source code]](../../../nocairosvg/__init__.py#L126)
+#### Signature
 
 ```python
-def svg2pdf(
+def svg2eps(
     bytestring: bytes | None = None,
     file_obj: FileIO | None = None,
     url: str | None = None,
@@ -211,7 +211,14 @@ def svg2pdf(
     output_width: int | None = None,
     output_height: int | None = None,
 ) -> bytes | None:
+    ...
 ```
+
+
+
+## svg2pdf
+
+[Show source in __init__.py:126](../../../nocairosvg/__init__.py#L126)
 
 Convert an SVG to a PDF
 
@@ -242,12 +249,10 @@ Defaults to None.
 - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
 to file
 
-## svg2png
-
-[[find in source code]](../../../nocairosvg/__init__.py#L64)
+#### Signature
 
 ```python
-def svg2png(
+def svg2pdf(
     bytestring: bytes | None = None,
     file_obj: FileIO | None = None,
     url: str | None = None,
@@ -263,7 +268,14 @@ def svg2png(
     output_width: int | None = None,
     output_height: int | None = None,
 ) -> bytes | None:
+    ...
 ```
+
+
+
+## svg2png
+
+[Show source in __init__.py:64](../../../nocairosvg/__init__.py#L64)
 
 Convert an SVG to a PNG
 
@@ -294,12 +306,10 @@ Defaults to None.
 - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
 to file
 
-## svg2ps
-
-[[find in source code]](../../../nocairosvg/__init__.py#L189)
+#### Signature
 
 ```python
-def svg2ps(
+def svg2png(
     bytestring: bytes | None = None,
     file_obj: FileIO | None = None,
     url: str | None = None,
@@ -315,7 +325,14 @@ def svg2ps(
     output_width: int | None = None,
     output_height: int | None = None,
 ) -> bytes | None:
+    ...
 ```
+
+
+
+## svg2ps
+
+[Show source in __init__.py:189](../../../nocairosvg/__init__.py#L189)
 
 Convert an SVG to PS
 
@@ -346,12 +363,10 @@ Defaults to None.
 - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
 to file
 
-## svg2svg
-
-[[find in source code]](../../../nocairosvg/__init__.py#L18)
+#### Signature
 
 ```python
-def svg2svg(
+def svg2ps(
     bytestring: bytes | None = None,
     file_obj: FileIO | None = None,
     url: str | None = None,
@@ -367,7 +382,14 @@ def svg2svg(
     output_width: int | None = None,
     output_height: int | None = None,
 ) -> bytes | None:
+    ...
 ```
+
+
+
+## svg2svg
+
+[Show source in __init__.py:18](../../../nocairosvg/__init__.py#L18)
 
 Convert an SVG to an SVG
 
@@ -398,18 +420,33 @@ Defaults to None.
 - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
 to file
 
-## write
-
-[[find in source code]](../../../nocairosvg/__init__.py#L393)
+#### Signature
 
 ```python
-def write(
-    image: Image.Image,
-    file: str | FileIO | None,
-    ext: str,
-    dpi: int,
+def svg2svg(
+    bytestring: bytes | None = None,
+    file_obj: FileIO | None = None,
+    url: str | None = None,
+    dpi: int = 96,
+    parent_width: int | None = None,
+    parent_height: int | None = None,
+    scale: float = 1,
+    unsafe: bool = False,
+    background_color: str | None = None,
+    negate_colors: bool = False,
+    invert_images: bool = False,
+    write_to: str | FileIO | None = None,
+    output_width: int | None = None,
+    output_height: int | None = None,
 ) -> bytes | None:
+    ...
 ```
+
+
+
+## write
+
+[Show source in __init__.py:392](../../../nocairosvg/__init__.py#L392)
 
 Write the pil image to the filesystem
 
@@ -423,3 +460,14 @@ file (Union[str, FileIO, None]): the file
 #### Returns
 
 - `Optional[bytes]` - the image data in bytes if no file specified
+
+#### Signature
+
+```python
+def write(
+    image: Image.Image, file: str | FileIO | None, ext: str, dpi: int
+) -> bytes | None:
+    ...
+```
+
+

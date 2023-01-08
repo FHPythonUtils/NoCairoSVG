@@ -1,16 +1,16 @@
-"""NoCairoSVG - A simple SVG converter not based on Cairo! (Uses pyppeteer)
+"""NoCairoSVG - A simple SVG converter not based on Cairo! (Uses playwright)
 """
 
 from __future__ import annotations
 
-import asyncio
 import base64
 import os
 from io import BytesIO, FileIO
 from pathlib import Path
 
-from PIL import Image, ImageOps
-from pyppeteer import launch
+from install_playwright import install
+from PIL import Image
+from playwright.sync_api import sync_playwright
 
 THISDIR = str(Path(__file__).resolve().parent)
 
@@ -342,13 +342,12 @@ def svg2bitmap(
 	"""
 	# Render the SVG
 	url = "file:///" + os.path.abspath(url).replace("\\", "/") if url is not None else None
-	image = asyncio.get_event_loop().run_until_complete(
-		convert(
-			resolve_file_url(bytestring, file_obj, url),
-			colour2tuple(background_color) if background_color is not None else (0, 0, 0, 0),
-			(parent_width, parent_height),
-		)
+	image = convert(
+		resolve_file_url(bytestring, file_obj, url),
+		colour2tuple(background_color) if background_color is not None else (0, 0, 0, 0),
+		(parent_width, parent_height),
 	)
+
 	new_width = output_width or int(image.width * scale)
 	new_height = output_height or int(image.height * scale)
 	# Apply scale/ set output width and height
@@ -409,12 +408,12 @@ def write(image: Image.Image, file: str | FileIO | None, ext: str, dpi: int) -> 
 	return open(f"{THISDIR}/temp.svg", "rb").read()
 
 
-async def convert(
+def convert(
 	url: str,
 	background_colour: tuple[int, int, int, int] = (0, 0, 0, 0),
 	size: tuple[int | None, int | None] = (None, None),
 ) -> Image.Image:
-	"""Launch pyppeteer and use the html canvas to convert
+	"""Launch playwright and use the html canvas to convert
 
 	Args:
 		url (str): location of the image to convert
@@ -426,23 +425,23 @@ async def convert(
 	Returns:
 		Image.Image: PIL Image
 	"""
-	browser = await launch(
-		options={
-			"args": ["--no-sandbox", "--disable-web-security", "--allow-file-access-from-files"]
-		}
-	)
-	page = await browser.newPage()
-	await page.setViewport({"width": 4000, "height": 4000})
-	await page.goto(f"file:///{THISDIR}/convert.html")
-	width = "0" if size[0] is None else f"{size[0]}px"
-	height = "0" if size[1] is None else f"{size[1]}px"
-	await page.evaluate(f"convert('{width}', '{height}', 'rgb{background_colour}', '{url}')")
-	await page.waitForSelector("div")
-	png_dat = await page.evaluate("document.getElementById('div1').innerText")
-	png_dat = png_dat[22:]  # data:image/png;base64,
-	img = Image.open(BytesIO(base64.b64decode(png_dat)))
-	await browser.close()
-	return img
+	with sync_playwright() as p:
+		install(p.chromium)
+		browser = p.chromium.launch(
+			args=["--no-sandbox", "--disable-web-security", "--allow-file-access-from-files"]
+		)
+		page = browser.new_page()
+		page.set_viewport_size({"width": 4000, "height": 4000})
+		page.goto(f"file:///{THISDIR}/convert.html")
+		width = f"{size[0]}px" if size[0] is not None else 0
+		height = f"{size[1]}px" if size[1] is not None else 0
+		page.evaluate(f"convert('{width}', '{height}', 'rgb{background_colour}', '{url}')")
+		page.wait_for_selector("div")
+		png_dat = page.evaluate("document.getElementById('div1').innerText")
+		png_dat = png_dat[22:]  # data:image/png;base64,
+		img = Image.open(BytesIO(base64.b64decode(png_dat)))
+		browser.close()
+		return img
 
 
 def colour2tuple(colour: str | None) -> tuple[int, int, int, int]:

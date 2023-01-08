@@ -1,8 +1,7 @@
-# Nocairosvg Modules
+# Nocairosvg Index
 
-> Auto-generated documentation modules index.
+> Auto-generated documentation index.
 
-Full list of [Nocairosvg](README.md#nocairosvg-index) project modules.
+A full list of `Nocairosvg` project modules.
 
-- [Nocairosvg Index](README.md#nocairosvg-index)
 - [Nocairosvg](nocairosvg/index.md#nocairosvg)

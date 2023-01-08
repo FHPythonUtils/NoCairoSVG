@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nocairosvg"
-version = "2022.0.1"
+version = "2023"
 license = "mit"
 description = "Drop in replacement for cairosvg"
 authors = ["FredHappyface"]
@@ -21,9 +21,10 @@ documentation = "https://github.com/FHPythonUtils/NoCairoSVG/blob/master/README.
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-Pillow = "<10,>=9.0.0"
-pyppeteer = "<2,>=1.0.2"
+python = "^3.8"
+Pillow = "<10,>=9.4.0"
+playwright = "<2,>=1.29.1"
+install-playwright = "<2,>=0.0.0"
 
 [tool.poetry.dev-dependencies]
 imgcompare = "^2.0.1"

@@ -8,6 +8,9 @@ sys.path.insert(0, str(Path(THISDIR).parent))
 
 import nocairosvg
 
-nocairosvg.svg2png(url="firefox.svg", write_to="firefox.png")
-nocairosvg.svg2eps(url="firefox.svg", write_to="firefox.eps")
-nocairosvg.svg2pdf(url="firefox.svg", write_to="firefox.pdf")
+gInputFile = f"{THISDIR}/data/firefox.svg"
+
+
+nocairosvg.svg2png(url=gInputFile, write_to="firefox.png")
+nocairosvg.svg2eps(url=gInputFile, write_to="firefox.eps")
+nocairosvg.svg2pdf(url=gInputFile, write_to="firefox.pdf")
