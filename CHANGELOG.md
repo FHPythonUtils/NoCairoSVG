@@ -3,6 +3,10 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2023.1 - 2023/08/31
+
+- Update deps
+
 ## 2023 - 2023/01/08
 
 - Add tox config

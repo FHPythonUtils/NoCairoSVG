@@ -469,5 +469,3 @@ def write(
 ) -> bytes | None:
     ...
 ```
-
-
