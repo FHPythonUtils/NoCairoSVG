@@ -34,8 +34,7 @@ Tuple[int, int, int, int]: the converted colour
 #### Signature
 
 ```python
-def colour2tuple(colour: str | None) -> tuple[int, int, int, int]:
-    ...
+def colour2tuple(colour: str | None) -> tuple[int, int, int, int]: ...
 ```
 
 
@@ -65,8 +64,7 @@ def convert(
     url: str,
     background_colour: tuple[int, int, int, int] = (0, 0, 0, 0),
     size: tuple[int | None, int | None] = (None, None),
-) -> Image.Image:
-    ...
+) -> Image.Image: ...
 ```
 
 
@@ -94,8 +92,7 @@ def resolve_file_url(
     bytestring: bytes | None = None,
     file_obj: FileIO | None = None,
     url: str | None = None,
-) -> str:
-    ...
+) -> str: ...
 ```
 
 
@@ -153,8 +150,7 @@ def svg2bitmap(
     output_height: int | None = None,
     ext: str = "png",
     transparent: bool = True,
-) -> bytes | None:
-    ...
+) -> bytes | None: ...
 ```
 
 
@@ -210,8 +206,7 @@ def svg2eps(
     write_to: str | FileIO | None = None,
     output_width: int | None = None,
     output_height: int | None = None,
-) -> bytes | None:
-    ...
+) -> bytes | None: ...
 ```
 
 
@@ -267,8 +262,7 @@ def svg2pdf(
     write_to: str | FileIO | None = None,
     output_width: int | None = None,
     output_height: int | None = None,
-) -> bytes | None:
-    ...
+) -> bytes | None: ...
 ```
 
 
@@ -324,8 +318,7 @@ def svg2png(
     write_to: str | FileIO | None = None,
     output_width: int | None = None,
     output_height: int | None = None,
-) -> bytes | None:
-    ...
+) -> bytes | None: ...
 ```
 
 
@@ -381,8 +374,7 @@ def svg2ps(
     write_to: str | FileIO | None = None,
     output_width: int | None = None,
     output_height: int | None = None,
-) -> bytes | None:
-    ...
+) -> bytes | None: ...
 ```
 
 
@@ -438,8 +430,7 @@ def svg2svg(
     write_to: str | FileIO | None = None,
     output_width: int | None = None,
     output_height: int | None = None,
-) -> bytes | None:
-    ...
+) -> bytes | None: ...
 ```
 
 
@@ -466,6 +457,5 @@ file (Union[str, FileIO, None]): the file
 ```python
 def write(
     image: Image.Image, file: str | FileIO | None, ext: str, dpi: int
-) -> bytes | None:
-    ...
+) -> bytes | None: ...
 ```
