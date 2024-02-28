@@ -18,7 +18,7 @@
 
 ## colour2tuple
 
-[Show source in __init__.py:447](../../../nocairosvg/__init__.py#L447)
+[Show source in __init__.py:463](../../../nocairosvg/__init__.py#L463)
 
 Convert a colour string to tuple
 
@@ -40,7 +40,7 @@ def colour2tuple(colour: str | None) -> tuple[int, int, int, int]: ...
 
 ## convert
 
-[Show source in __init__.py:411](../../../nocairosvg/__init__.py#L411)
+[Show source in __init__.py:421](../../../nocairosvg/__init__.py#L421)
 
 Launch playwright and use the html canvas to convert
 
@@ -70,7 +70,7 @@ def convert(
 
 ## resolve_file_url
 
-[Show source in __init__.py:364](../../../nocairosvg/__init__.py#L364)
+[Show source in __init__.py:370](../../../nocairosvg/__init__.py#L370)
 
 Get a file url from a bytestring, file object, or url...
 
@@ -436,7 +436,7 @@ def svg2svg(
 
 ## write
 
-[Show source in __init__.py:392](../../../nocairosvg/__init__.py#L392)
+[Show source in __init__.py:400](../../../nocairosvg/__init__.py#L400)
 
 Write the pil image to the filesystem
 
