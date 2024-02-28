@@ -14,7 +14,7 @@ patch-level version changes can be found in [commit messages](../../commits/mast
 ## 2023 - 2023/01/08
 
 - Add tox config
-- Use playwright and install_playwright in-place of pyppeteer
+- Use playwright and install_playwright in-place of playwright
 
 ## 2022.0.1 - 2022/02/01
 

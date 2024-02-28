@@ -44,7 +44,8 @@ def test_svg2eps():
 	outputFile = f"{THISDIR}/data/firefox.eps"
 	nocairosvg.svg2eps(url=gInputFile, write_to=outputFile)
 	assert (
-		Path(outputFile).read_bytes() == Path(f"{THISDIR}/data/firefox_expected.eps").read_bytes()
+		Path(outputFile).read_bytes()
+		== Path(f"{THISDIR}/data/firefox_expected.eps").read_bytes()
 	)
 
 

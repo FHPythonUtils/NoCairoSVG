@@ -1,7 +1,6 @@
 # Nocairosvg
 
-[Nocairosvg Index](../README.md#nocairosvg-index) /
-Nocairosvg
+[Nocairosvg Index](../README.md#nocairosvg-index) / Nocairosvg
 
 > Auto-generated documentation for [nocairosvg](../../../nocairosvg/__init__.py) module.
 

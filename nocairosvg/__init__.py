@@ -341,10 +341,16 @@ def svg2bitmap(
 		to file
 	"""
 	# Render the SVG
-	url = "file:///" + os.path.abspath(url).replace("\\", "/") if url is not None else None
+	url = (
+		"file:///" + os.path.abspath(url).replace("\\", "/")
+		if url is not None
+		else None
+	)
 	image = convert(
 		resolve_file_url(bytestring, file_obj, url),
-		colour2tuple(background_color) if background_color is not None else (0, 0, 0, 0),
+		colour2tuple(background_color)
+		if background_color is not None
+		else (0, 0, 0, 0),
 		(parent_width, parent_height),
 	)
 
@@ -362,7 +368,9 @@ def svg2bitmap(
 
 
 def resolve_file_url(
-	bytestring: bytes | None = None, file_obj: FileIO | None = None, url: str | None = None
+	bytestring: bytes | None = None,
+	file_obj: FileIO | None = None,
+	url: str | None = None,
 ) -> str:
 	"""Get a file url from a bytestring, file object, or url...
 
@@ -389,7 +397,9 @@ def resolve_file_url(
 	return "err"
 
 
-def write(image: Image.Image, file: str | FileIO | None, ext: str, dpi: int) -> bytes | None:
+def write(
+	image: Image.Image, file: str | FileIO | None, ext: str, dpi: int
+) -> bytes | None:
 	"""Write the pil image to the filesystem
 
 	Args:
@@ -428,14 +438,20 @@ def convert(
 	with sync_playwright() as p:
 		install(p.chromium)
 		browser = p.chromium.launch(
-			args=["--no-sandbox", "--disable-web-security", "--allow-file-access-from-files"]
+			args=[
+				"--no-sandbox",
+				"--disable-web-security",
+				"--allow-file-access-from-files",
+			]
 		)
 		page = browser.new_page()
 		page.set_viewport_size({"width": 4000, "height": 4000})
 		page.goto(f"file:///{THISDIR}/convert.html")
 		width = f"{size[0]}px" if size[0] is not None else 0
 		height = f"{size[1]}px" if size[1] is not None else 0
-		page.evaluate(f"convert('{width}', '{height}', 'rgb{background_colour}', '{url}')")
+		page.evaluate(
+			f"convert('{width}', '{height}', 'rgb{background_colour}', '{url}')"
+		)
 		page.wait_for_selector("div")
 		png_dat = page.evaluate("document.getElementById('div1').innerText")
 		png_dat = png_dat[22:]  # data:image/png;base64,
