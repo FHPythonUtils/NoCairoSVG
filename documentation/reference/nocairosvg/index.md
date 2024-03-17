@@ -20,7 +20,7 @@
 
 [Show source in __init__.py:479](../../../nocairosvg/__init__.py#L479)
 
-Convert a colour string to tuple
+Convert a colour string to tuple.
 
 #### Arguments
 
@@ -44,7 +44,7 @@ def colour2tuple(colour: str | None) -> tuple[int, int, int, int]: ...
 
 [Show source in __init__.py:436](../../../nocairosvg/__init__.py#L436)
 
-Launch playwright and use the html canvas to convert
+Launch playwright and use the html canvas to convert.
 
 #### Arguments
 
@@ -106,7 +106,7 @@ def resolve_file_url(
 
 [Show source in __init__.py:312](../../../nocairosvg/__init__.py#L312)
 
-Convert an SVG to an SVG
+Convert an SVG to an SVG.
 
 #### Arguments
 
@@ -166,7 +166,7 @@ def svg2bitmap(
 
 [Show source in __init__.py:246](../../../nocairosvg/__init__.py#L246)
 
-Convert an SVG to EPS
+Convert an SVG to EPS.
 
 #### Arguments
 
@@ -224,7 +224,7 @@ def svg2eps(
 
 [Show source in __init__.py:131](../../../nocairosvg/__init__.py#L131)
 
-Convert an SVG to a PDF
+Convert an SVG to a PDF.
 
 #### Arguments
 
@@ -282,7 +282,7 @@ def svg2pdf(
 
 [Show source in __init__.py:66](../../../nocairosvg/__init__.py#L66)
 
-Convert an SVG to a PNG
+Convert an SVG to a PNG.
 
 #### Arguments
 
@@ -340,7 +340,7 @@ def svg2png(
 
 [Show source in __init__.py:197](../../../nocairosvg/__init__.py#L197)
 
-Convert an SVG to PS
+Convert an SVG to PS.
 
 #### Arguments
 
@@ -398,7 +398,7 @@ def svg2ps(
 
 [Show source in __init__.py:17](../../../nocairosvg/__init__.py#L17)
 
-Convert an SVG to an SVG
+Convert an SVG to an SVG.
 
 #### Arguments
 
@@ -456,7 +456,7 @@ def svg2svg(
 
 [Show source in __init__.py:414](../../../nocairosvg/__init__.py#L414)
 
-Write the pil image to the filesystem
+Write the pil image to the filesystem.
 
 #### Arguments
 
