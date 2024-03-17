@@ -18,17 +18,19 @@
 
 ## colour2tuple
 
-[Show source in __init__.py:463](../../../nocairosvg/__init__.py#L463)
+[Show source in __init__.py:479](../../../nocairosvg/__init__.py#L479)
 
 Convert a colour string to tuple
 
 #### Arguments
 
-- `colour` *Optional[str]* - the colour
+----
+ - `colour` *Optional[str]* - the colour
 
 #### Returns
 
-Tuple[int, int, int, int]: the converted colour
+-------
+ Tuple[int, int, int, int]: the converted colour
 
 #### Signature
 
@@ -40,21 +42,23 @@ def colour2tuple(colour: str | None) -> tuple[int, int, int, int]: ...
 
 ## convert
 
-[Show source in __init__.py:421](../../../nocairosvg/__init__.py#L421)
+[Show source in __init__.py:436](../../../nocairosvg/__init__.py#L436)
 
 Launch playwright and use the html canvas to convert
 
 #### Arguments
 
-- `url` *str* - location of the image to convert
-background_colour (Tuple[int, int, int, int], optional): Set the background colour.
-Defaults to (0, 0, 0, 0).
-size (Tuple[Optional[int], Optional[int]], optional): Size to crop the image to.
-Defaults to (None, None).
+----
+ - `url` *str* - location of the image to convert
+ background_colour (Tuple[int, int, int, int], optional): Set the background colour.
+ Defaults to (0, 0, 0, 0).
+ size (Tuple[Optional[int], Optional[int]], optional): Size to crop the image to.
+ Defaults to (None, None).
 
 #### Returns
 
-- `Image.Image` - PIL Image
+-------
+ - `Image.Image` - PIL Image
 
 #### Signature
 
@@ -70,19 +74,21 @@ def convert(
 
 ## resolve_file_url
 
-[Show source in __init__.py:370](../../../nocairosvg/__init__.py#L370)
+[Show source in __init__.py:381](../../../nocairosvg/__init__.py#L381)
 
 Get a file url from a bytestring, file object, or url...
 
 #### Arguments
 
-- `bytestring` *Optional[bytes], optional* - svg bytes. Defaults to None.
-- `file_obj` *Optional[FileIO], optional* - file object. Defaults to None.
-- `url` *Optional[str], optional* - path. Defaults to None.
+----
+ - `bytestring` *Optional[bytes], optional* - svg bytes. Defaults to None.
+ - `file_obj` *Optional[FileIO], optional* - file object. Defaults to None.
+ - `url` *Optional[str], optional* - path. Defaults to None.
 
 #### Returns
 
-- `str` - path
+-------
+ - `str` - path
 
 #### Signature
 
@@ -98,37 +104,39 @@ def resolve_file_url(
 
 ## svg2bitmap
 
-[Show source in __init__.py:298](../../../nocairosvg/__init__.py#L298)
+[Show source in __init__.py:312](../../../nocairosvg/__init__.py#L312)
 
 Convert an SVG to an SVG
 
 #### Arguments
 
-- `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
-- `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
-- `url` *Optional[str], optional* - path to file. Defaults to None.
-- `dpi` *int, optional* - dpi. Defaults to 96.
-- `parent_width` *Optional[int], optional* - width of the parent element
-(e.g. div). Defaults to None.
-- `parent_height` *Optional[int], optional* - height of the parent element
-(e.g. div). Defaults to None.
-- `scale` *float, optional* - scale the image by . Defaults to 1.
-- `background_color` *Optional[str], optional* - Set a bg colour if not
-transparent. Defaults to None.
-- `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
-- `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-write_to (Union[str, FileIO, None], optional): file path/ object to
-write to (Omit to return bytes). Defaults to None.
-- `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-- `output_height` *Optional[int], optional* - height of output image.
-Defaults to None.
-- `ext` *str* - image type. Defaults to 'png'
-- `transparent` *bool* - Should the image be transparent. Defaults to True
+----
+ - `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
+ - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
+ - `url` *Optional[str], optional* - path to file. Defaults to None.
+ - `dpi` *int, optional* - dpi. Defaults to 96.
+ - `parent_width` *Optional[int], optional* - width of the parent element
+ (e.g. div). Defaults to None.
+ - `parent_height` *Optional[int], optional* - height of the parent element
+ (e.g. div). Defaults to None.
+ - `scale` *float, optional* - scale the image by . Defaults to 1.
+ - `background_color` *Optional[str], optional* - Set a bg colour if not
+ transparent. Defaults to None.
+ - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
+ - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
+ write_to (Union[str, FileIO, None], optional): file path/ object to
+ write to (Omit to return bytes). Defaults to None.
+ - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
+ - `output_height` *Optional[int], optional* - height of output image.
+ Defaults to None.
+ - `ext` *str* - image type. Defaults to 'png'
+ - `transparent` *bool* - Should the image be transparent. Defaults to True
 
 #### Returns
 
-- `Optional[bytes]` - Bytes of image if write_to is None. else writes image
-to file
+-------
+ - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
+ to file
 
 #### Signature
 
@@ -156,36 +164,38 @@ def svg2bitmap(
 
 ## svg2eps
 
-[Show source in __init__.py:235](../../../nocairosvg/__init__.py#L235)
+[Show source in __init__.py:246](../../../nocairosvg/__init__.py#L246)
 
 Convert an SVG to EPS
 
 #### Arguments
 
-- `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
-- `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
-- `url` *Optional[str], optional* - path to file. Defaults to None.
-- `dpi` *int, optional* - dpi. Defaults to 96.
-- `parent_width` *Optional[int], optional* - width of the parent element
-(e.g. div). Defaults to None.
-- `parent_height` *Optional[int], optional* - height of the parent element
-(e.g. div). Defaults to None.
-- `scale` *float, optional* - scale the image by . Defaults to 1.
-- `unsafe` *bool, optional* - NA here . Defaults to False.
-- `background_color` *Optional[str], optional* - Set a bg colour if not
-transparent. Defaults to None.
-- `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
-- `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-write_to (Union[str, FileIO, None], optional): file path/ object to
-write to (Omit to return bytes). Defaults to None.
-- `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-- `output_height` *Optional[int], optional* - height of output image.
-Defaults to None.
+----
+ - `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
+ - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
+ - `url` *Optional[str], optional* - path to file. Defaults to None.
+ - `dpi` *int, optional* - dpi. Defaults to 96.
+ - `parent_width` *Optional[int], optional* - width of the parent element
+ (e.g. div). Defaults to None.
+ - `parent_height` *Optional[int], optional* - height of the parent element
+ (e.g. div). Defaults to None.
+ - `scale` *float, optional* - scale the image by . Defaults to 1.
+ - `unsafe` *bool, optional* - NA here . Defaults to False.
+ - `background_color` *Optional[str], optional* - Set a bg colour if not
+ transparent. Defaults to None.
+ - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
+ - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
+ write_to (Union[str, FileIO, None], optional): file path/ object to
+ write to (Omit to return bytes). Defaults to None.
+ - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
+ - `output_height` *Optional[int], optional* - height of output image.
+ Defaults to None.
 
 #### Returns
 
-- `Optional[bytes]` - Bytes of image if write_to is None. else writes image
-to file
+-------
+ - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
+ to file
 
 #### Signature
 
@@ -212,36 +222,38 @@ def svg2eps(
 
 ## svg2pdf
 
-[Show source in __init__.py:126](../../../nocairosvg/__init__.py#L126)
+[Show source in __init__.py:131](../../../nocairosvg/__init__.py#L131)
 
 Convert an SVG to a PDF
 
 #### Arguments
 
-- `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
-- `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
-- `url` *Optional[str], optional* - path to file. Defaults to None.
-- `dpi` *int, optional* - dpi. Defaults to 96.
-- `parent_width` *Optional[int], optional* - width of the parent element
-(e.g. div). Defaults to None.
-- `parent_height` *Optional[int], optional* - height of the parent element
-(e.g. div). Defaults to None.
-- `scale` *float, optional* - scale the image by . Defaults to 1.
-- `unsafe` *bool, optional* - NA here . Defaults to False.
-- `background_color` *Optional[str], optional* - Set a bg colour if not
-transparent. Defaults to None.
-- `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
-- `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-write_to (Union[str, FileIO, None], optional): file path/ object to
-write to (Omit to return bytes). Defaults to None.
-- `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-- `output_height` *Optional[int], optional* - height of output image.
-Defaults to None.
+----
+ - `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
+ - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
+ - `url` *Optional[str], optional* - path to file. Defaults to None.
+ - `dpi` *int, optional* - dpi. Defaults to 96.
+ - `parent_width` *Optional[int], optional* - width of the parent element
+ (e.g. div). Defaults to None.
+ - `parent_height` *Optional[int], optional* - height of the parent element
+ (e.g. div). Defaults to None.
+ - `scale` *float, optional* - scale the image by . Defaults to 1.
+ - `unsafe` *bool, optional* - NA here . Defaults to False.
+ - `background_color` *Optional[str], optional* - Set a bg colour if not
+ transparent. Defaults to None.
+ - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
+ - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
+ write_to (Union[str, FileIO, None], optional): file path/ object to
+ write to (Omit to return bytes). Defaults to None.
+ - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
+ - `output_height` *Optional[int], optional* - height of output image.
+ Defaults to None.
 
 #### Returns
 
-- `Optional[bytes]` - Bytes of image if write_to is None. else writes image
-to file
+-------
+ - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
+ to file
 
 #### Signature
 
@@ -268,36 +280,38 @@ def svg2pdf(
 
 ## svg2png
 
-[Show source in __init__.py:64](../../../nocairosvg/__init__.py#L64)
+[Show source in __init__.py:66](../../../nocairosvg/__init__.py#L66)
 
 Convert an SVG to a PNG
 
 #### Arguments
 
-- `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
-- `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
-- `url` *Optional[str], optional* - path to file. Defaults to None.
-- `dpi` *int, optional* - dpi. Defaults to 96.
-- `parent_width` *Optional[int], optional* - width of the parent element
-(e.g. div). Defaults to None.
-- `parent_height` *Optional[int], optional* - height of the parent element
-(e.g. div). Defaults to None.
-- `scale` *float, optional* - scale the image by . Defaults to 1.
-- `unsafe` *bool, optional* - NA here . Defaults to False.
-- `background_color` *Optional[str], optional* - Set a bg colour if not
-transparent. Defaults to None.
-- `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
-- `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-write_to (Union[str, FileIO, None], optional): file path/ object to
-write to (Omit to return bytes). Defaults to None.
-- `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-- `output_height` *Optional[int], optional* - height of output image.
-Defaults to None.
+----
+ - `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
+ - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
+ - `url` *Optional[str], optional* - path to file. Defaults to None.
+ - `dpi` *int, optional* - dpi. Defaults to 96.
+ - `parent_width` *Optional[int], optional* - width of the parent element
+ (e.g. div). Defaults to None.
+ - `parent_height` *Optional[int], optional* - height of the parent element
+ (e.g. div). Defaults to None.
+ - `scale` *float, optional* - scale the image by . Defaults to 1.
+ - `unsafe` *bool, optional* - NA here . Defaults to False.
+ - `background_color` *Optional[str], optional* - Set a bg colour if not
+ transparent. Defaults to None.
+ - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
+ - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
+ write_to (Union[str, FileIO, None], optional): file path/ object to
+ write to (Omit to return bytes). Defaults to None.
+ - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
+ - `output_height` *Optional[int], optional* - height of output image.
+ Defaults to None.
 
 #### Returns
 
-- `Optional[bytes]` - Bytes of image if write_to is None. else writes image
-to file
+-------
+ - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
+ to file
 
 #### Signature
 
@@ -324,36 +338,38 @@ def svg2png(
 
 ## svg2ps
 
-[Show source in __init__.py:189](../../../nocairosvg/__init__.py#L189)
+[Show source in __init__.py:197](../../../nocairosvg/__init__.py#L197)
 
 Convert an SVG to PS
 
 #### Arguments
 
-- `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
-- `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
-- `url` *Optional[str], optional* - path to file. Defaults to None.
-- `dpi` *int, optional* - dpi. Defaults to 96.
-- `parent_width` *Optional[int], optional* - width of the parent element
-(e.g. div). Defaults to None.
-- `parent_height` *Optional[int], optional* - height of the parent element
-(e.g. div). Defaults to None.
-- `scale` *float, optional* - scale the image by . Defaults to 1.
-- `unsafe` *bool, optional* - NA here . Defaults to False.
-- `background_color` *Optional[str], optional* - Set a bg colour if not
-transparent. Defaults to None.
-- `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
-- `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-write_to (Union[str, FileIO, None], optional): file path/ object to
-write to (Omit to return bytes). Defaults to None.
-- `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-- `output_height` *Optional[int], optional* - height of output image.
-Defaults to None.
+----
+ - `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
+ - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
+ - `url` *Optional[str], optional* - path to file. Defaults to None.
+ - `dpi` *int, optional* - dpi. Defaults to 96.
+ - `parent_width` *Optional[int], optional* - width of the parent element
+ (e.g. div). Defaults to None.
+ - `parent_height` *Optional[int], optional* - height of the parent element
+ (e.g. div). Defaults to None.
+ - `scale` *float, optional* - scale the image by . Defaults to 1.
+ - `unsafe` *bool, optional* - NA here . Defaults to False.
+ - `background_color` *Optional[str], optional* - Set a bg colour if not
+ transparent. Defaults to None.
+ - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
+ - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
+ write_to (Union[str, FileIO, None], optional): file path/ object to
+ write to (Omit to return bytes). Defaults to None.
+ - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
+ - `output_height` *Optional[int], optional* - height of output image.
+ Defaults to None.
 
 #### Returns
 
-- `Optional[bytes]` - Bytes of image if write_to is None. else writes image
-to file
+-------
+ - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
+ to file
 
 #### Signature
 
@@ -380,36 +396,38 @@ def svg2ps(
 
 ## svg2svg
 
-[Show source in __init__.py:18](../../../nocairosvg/__init__.py#L18)
+[Show source in __init__.py:17](../../../nocairosvg/__init__.py#L17)
 
 Convert an SVG to an SVG
 
 #### Arguments
 
-- `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
-- `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
-- `url` *Optional[str], optional* - path to file. Defaults to None.
-- `dpi` *int, optional* - dpi. Defaults to 96.
-- `parent_width` *Optional[int], optional* - width of the parent element
-(e.g. div). Defaults to None.
-- `parent_height` *Optional[int], optional* - height of the parent element
-(e.g. div). Defaults to None.
-- `scale` *float, optional* - scale the image by . Defaults to 1.
-- `unsafe` *bool, optional* - NA here . Defaults to False.
-- `background_color` *Optional[str], optional* - Set a bg colour if not
-transparent. Defaults to None.
-- `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
-- `invert_images` *bool, optional* - invert the image colours. Defaults to False.
-write_to (Union[str, FileIO, None], optional): file path/ object to
-write to (Omit to return bytes). Defaults to None.
-- `output_width` *Optional[int], optional* - width of output image. Defaults to None.
-- `output_height` *Optional[int], optional* - height of output image.
-Defaults to None.
+----
+ - `bytestring` *Optional[bytes], optional* - bytes containing svg data. Defaults to None.
+ - `file_obj` *Optional[FileIO], optional* - opened file object. Defaults to None.
+ - `url` *Optional[str], optional* - path to file. Defaults to None.
+ - `dpi` *int, optional* - dpi. Defaults to 96.
+ - `parent_width` *Optional[int], optional* - width of the parent element
+ (e.g. div). Defaults to None.
+ - `parent_height` *Optional[int], optional* - height of the parent element
+ (e.g. div). Defaults to None.
+ - `scale` *float, optional* - scale the image by . Defaults to 1.
+ - `unsafe` *bool, optional* - NA here . Defaults to False.
+ - `background_color` *Optional[str], optional* - Set a bg colour if not
+ transparent. Defaults to None.
+ - `negate_colors` *bool, optional* - invert the image colours. Defaults to False.
+ - `invert_images` *bool, optional* - invert the image colours. Defaults to False.
+ write_to (Union[str, FileIO, None], optional): file path/ object to
+ write to (Omit to return bytes). Defaults to None.
+ - `output_width` *Optional[int], optional* - width of output image. Defaults to None.
+ - `output_height` *Optional[int], optional* - height of output image.
+ Defaults to None.
 
 #### Returns
 
-- `Optional[bytes]` - Bytes of image if write_to is None. else writes image
-to file
+-------
+ - `Optional[bytes]` - Bytes of image if write_to is None. else writes image
+ to file
 
 #### Signature
 
@@ -436,20 +454,22 @@ def svg2svg(
 
 ## write
 
-[Show source in __init__.py:400](../../../nocairosvg/__init__.py#L400)
+[Show source in __init__.py:414](../../../nocairosvg/__init__.py#L414)
 
 Write the pil image to the filesystem
 
 #### Arguments
 
-- `image` *Image.Image* - pillow image
-file (Union[str, FileIO, None]): the file
-- `ext` *str* - the image extension
-- `dpi` *int* - the dpi
+----
+ - `image` *Image.Image* - pillow image
+ file (Union[str, FileIO, None]): the file
+ - `ext` *str* - the image extension
+ - `dpi` *int* - the dpi
 
 #### Returns
 
-- `Optional[bytes]` - the image data in bytes if no file specified
+-------
+ - `Optional[bytes]` - the image data in bytes if no file specified
 
 #### Signature
 

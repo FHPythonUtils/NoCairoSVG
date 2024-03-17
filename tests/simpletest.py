@@ -1,4 +1,5 @@
 """Test script to convert svg to png, eps and pdf"""
+
 import sys
 from pathlib import Path
 

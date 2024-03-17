@@ -1,5 +1,4 @@
-"""NoCairoSVG - A simple SVG converter not based on Cairo! (Uses playwright)
-"""
+"""NoCairoSVG - A simple SVG converter not based on Cairo! (Uses playwright)"""
 
 from __future__ import annotations
 
@@ -34,6 +33,7 @@ def svg2svg(
 	"""Convert an SVG to an SVG
 
 	Args:
+	----
 		bytestring (Optional[bytes], optional): bytes containing svg data. Defaults to None.
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
@@ -55,8 +55,10 @@ def svg2svg(
 		Defaults to None.
 
 	Returns:
+	-------
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
+
 	"""
 	raise NotImplementedError
 
@@ -80,6 +82,7 @@ def svg2png(
 	"""Convert an SVG to a PNG
 
 	Args:
+	----
 		bytestring (Optional[bytes], optional): bytes containing svg data. Defaults to None.
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
@@ -101,8 +104,10 @@ def svg2png(
 		Defaults to None.
 
 	Returns:
+	-------
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
+
 	"""
 	del unsafe
 	return svg2bitmap(
@@ -142,6 +147,7 @@ def svg2pdf(
 	"""Convert an SVG to a PDF
 
 	Args:
+	----
 		bytestring (Optional[bytes], optional): bytes containing svg data. Defaults to None.
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
@@ -163,8 +169,10 @@ def svg2pdf(
 		Defaults to None.
 
 	Returns:
+	-------
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
+
 	"""
 	del unsafe
 	return svg2bitmap(
@@ -205,6 +213,7 @@ def svg2ps(
 	"""Convert an SVG to PS
 
 	Args:
+	----
 		bytestring (Optional[bytes], optional): bytes containing svg data. Defaults to None.
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
@@ -226,8 +235,10 @@ def svg2ps(
 		Defaults to None.
 
 	Returns:
+	-------
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
+
 	"""
 	raise NotImplementedError
 
@@ -251,6 +262,7 @@ def svg2eps(
 	"""Convert an SVG to EPS
 
 	Args:
+	----
 		bytestring (Optional[bytes], optional): bytes containing svg data. Defaults to None.
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
@@ -272,8 +284,10 @@ def svg2eps(
 		Defaults to None.
 
 	Returns:
+	-------
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
+
 	"""
 	del unsafe
 	return svg2bitmap(
@@ -315,6 +329,7 @@ def svg2bitmap(
 	"""Convert an SVG to an SVG
 
 	Args:
+	----
 		bytestring (Optional[bytes], optional): bytes containing svg data. Defaults to None.
 		file_obj (Optional[FileIO], optional): opened file object. Defaults to None.
 		url (Optional[str], optional): path to file. Defaults to None.
@@ -337,20 +352,16 @@ def svg2bitmap(
 		transparent (bool): Should the image be transparent. Defaults to True
 
 	Returns:
+	-------
 		Optional[bytes]: Bytes of image if write_to is None. else writes image
 		to file
+
 	"""
 	# Render the SVG
-	url = (
-		"file:///" + os.path.abspath(url).replace("\\", "/")
-		if url is not None
-		else None
-	)
+	url = "file:///" + os.path.abspath(url).replace("\\", "/") if url is not None else None
 	image = convert(
 		resolve_file_url(bytestring, file_obj, url),
-		colour2tuple(background_color)
-		if background_color is not None
-		else (0, 0, 0, 0),
+		colour2tuple(background_color) if background_color is not None else (0, 0, 0, 0),
 		(parent_width, parent_height),
 	)
 
@@ -375,12 +386,15 @@ def resolve_file_url(
 	"""Get a file url from a bytestring, file object, or url...
 
 	Args:
+	----
 		bytestring (Optional[bytes], optional): svg bytes. Defaults to None.
 		file_obj (Optional[FileIO], optional): file object. Defaults to None.
 		url (Optional[str], optional): path. Defaults to None.
 
 	Returns:
+	-------
 		str: path
+
 	"""
 	if url is not None:
 		return url
@@ -397,19 +411,20 @@ def resolve_file_url(
 	return "err"
 
 
-def write(
-	image: Image.Image, file: str | FileIO | None, ext: str, dpi: int
-) -> bytes | None:
+def write(image: Image.Image, file: str | FileIO | None, ext: str, dpi: int) -> bytes | None:
 	"""Write the pil image to the filesystem
 
 	Args:
+	----
 		image (Image.Image): pillow image
 		file (Union[str, FileIO, None]): the file
 		ext (str): the image extension
 		dpi (int): the dpi
 
 	Returns:
+	-------
 		Optional[bytes]: the image data in bytes if no file specified
+
 	"""
 	if file is not None:
 		image.save(file, format=ext, dpi=(dpi, dpi))
@@ -426,6 +441,7 @@ def convert(
 	"""Launch playwright and use the html canvas to convert
 
 	Args:
+	----
 		url (str): location of the image to convert
 		background_colour (Tuple[int, int, int, int], optional): Set the background colour.
 		Defaults to (0, 0, 0, 0).
@@ -433,7 +449,9 @@ def convert(
 		Defaults to (None, None).
 
 	Returns:
+	-------
 		Image.Image: PIL Image
+
 	"""
 	with sync_playwright() as p:
 		install(p.chromium)
@@ -449,9 +467,7 @@ def convert(
 		page.goto(f"file:///{THISDIR}/convert.html")
 		width = f"{size[0]}px" if size[0] is not None else 0
 		height = f"{size[1]}px" if size[1] is not None else 0
-		page.evaluate(
-			f"convert('{width}', '{height}', 'rgb{background_colour}', '{url}')"
-		)
+		page.evaluate(f"convert('{width}', '{height}', 'rgb{background_colour}', '{url}')")
 		page.wait_for_selector("div")
 		png_dat = page.evaluate("document.getElementById('div1').innerText")
 		png_dat = png_dat[22:]  # data:image/png;base64,
@@ -464,10 +480,13 @@ def colour2tuple(colour: str | None) -> tuple[int, int, int, int]:
 	"""Convert a colour string to tuple
 
 	Args:
+	----
 		colour (Optional[str]): the colour
 
 	Returns:
+	-------
 		Tuple[int, int, int, int]: the converted colour
+
 	"""
 	colours = {
 		"aliceblue": (240 / 255, 248 / 255, 255 / 255, 1),
