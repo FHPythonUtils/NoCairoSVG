@@ -1,4 +1,4 @@
-"""NoCairoSVG - A simple SVG converter not based on Cairo! (Uses playwright)"""
+"""NoCairoSVG - A simple SVG converter not based on Cairo! (Uses playwright)."""
 
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ def svg2svg(
 	output_width: int | None = None,
 	output_height: int | None = None,
 ) -> bytes | None:
-	"""Convert an SVG to an SVG
+	"""Convert an SVG to an SVG.
 
 	Args:
 	----
@@ -79,7 +79,7 @@ def svg2png(
 	output_width: int | None = None,
 	output_height: int | None = None,
 ) -> bytes | None:
-	"""Convert an SVG to a PNG
+	"""Convert an SVG to a PNG.
 
 	Args:
 	----
@@ -144,7 +144,7 @@ def svg2pdf(
 	output_width: int | None = None,
 	output_height: int | None = None,
 ) -> bytes | None:
-	"""Convert an SVG to a PDF
+	"""Convert an SVG to a PDF.
 
 	Args:
 	----
@@ -210,7 +210,7 @@ def svg2ps(
 	output_width: int | None = None,
 	output_height: int | None = None,
 ) -> bytes | None:
-	"""Convert an SVG to PS
+	"""Convert an SVG to PS.
 
 	Args:
 	----
@@ -259,7 +259,7 @@ def svg2eps(
 	output_width: int | None = None,
 	output_height: int | None = None,
 ) -> bytes | None:
-	"""Convert an SVG to EPS
+	"""Convert an SVG to EPS.
 
 	Args:
 	----
@@ -326,7 +326,7 @@ def svg2bitmap(
 	ext: str = "png",
 	transparent: bool = True,
 ) -> bytes | None:
-	"""Convert an SVG to an SVG
+	"""Convert an SVG to an SVG.
 
 	Args:
 	----
@@ -412,7 +412,7 @@ def resolve_file_url(
 
 
 def write(image: Image.Image, file: str | FileIO | None, ext: str, dpi: int) -> bytes | None:
-	"""Write the pil image to the filesystem
+	"""Write the pil image to the filesystem.
 
 	Args:
 	----
@@ -438,7 +438,7 @@ def convert(
 	background_colour: tuple[int, int, int, int] = (0, 0, 0, 0),
 	size: tuple[int | None, int | None] = (None, None),
 ) -> Image.Image:
-	"""Launch playwright and use the html canvas to convert
+	"""Launch playwright and use the html canvas to convert.
 
 	Args:
 	----
@@ -477,7 +477,7 @@ def convert(
 
 
 def colour2tuple(colour: str | None) -> tuple[int, int, int, int]:
-	"""Convert a colour string to tuple
+	"""Convert a colour string to tuple.
 
 	Args:
 	----

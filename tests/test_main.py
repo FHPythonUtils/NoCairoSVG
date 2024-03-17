@@ -26,7 +26,7 @@ def getPdfData(pdf: str) -> str:
 	)[0]
 
 
-def test_svg2png():
+def test_svg2png() -> None:
 	"""test_svg2png"""
 	outputFile = f"{THISDIR}/data/firefox.png"
 	nocairosvg.svg2png(url=gInputFile, write_to=outputFile)
@@ -39,7 +39,7 @@ def test_svg2png():
 	)
 
 
-def test_svg2eps():
+def test_svg2eps() -> None:
 	"""test_svg2eps"""
 	outputFile = f"{THISDIR}/data/firefox.eps"
 	nocairosvg.svg2eps(url=gInputFile, write_to=outputFile)
@@ -48,7 +48,7 @@ def test_svg2eps():
 	)
 
 
-def test_svg2pdf():
+def test_svg2pdf() -> None:
 	"""test_svg2pdf"""
 	outputFile = f"{THISDIR}/data/firefox.pdf"
 	nocairosvg.svg2pdf(url=gInputFile, write_to=outputFile)
